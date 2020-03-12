@@ -29,7 +29,6 @@ SuperEvents right now can handel these events:-
 
 -----
 
-
 ## Copyright and license
 SuperEvents 2020 Hassan Matooq. Code released under the MIT license.
 
