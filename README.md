@@ -29,6 +29,17 @@ SuperEvents right now can handel these events:-
 
 -----
 
+## Installation
+Download the latest version of SuperEvents from [GitHub repository](https://github.com/alzintani/SuperEvents/releases).
+Include SuperEvents.min.js to your HTML file.
+```HTML
+<script src="/path/to/SuperEvents.min.js"></script>
+```
+And SuperEvents is ready to use!
+
+
+-----
+
 ## Copyright and license
 SuperEvents 2020 Hassan Matooq. Code released under the MIT license.
 
