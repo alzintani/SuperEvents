@@ -22,10 +22,10 @@ JavaScript library that handling any events in websites.
 ## Description
 Often, when events happen, you may want to do something. SuperEvents allows you applying actions to target elements when events are detected in source element.
 SuperEvents right now can handel these events:-
-* Clicking
-* Hovering
-* Mouse Moving
-* Scrolling
+* Click
+* Hover
+* Mouse Move
+* Scroll
 
 -----
 
