@@ -104,7 +104,6 @@ const runServer = () => {
   app.use( '/dist/', express.static(__dirname + '/dist/'))
   app.use( '/logo.png', express.static(__dirname + '/logo.png'))
   app.use( '/favicon.ico', express.static(__dirname + '/favicon.ico'))
-  app.use( '/scripts/', express.static( __dirname + '/node_modules/') )
 
   app.listen(port, function () {
     console.log(`> SuperEvents listening on port: ${port}`)
