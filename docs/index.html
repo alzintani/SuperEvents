@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://superevents.org">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>SuperEvents - JavaScript Events Library</title>
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="scripts/prismjs/themes/prism.css">
+  </head>
+  <body>
+    <div id="left-side">
+      <h1 id="page-title">SuperEvents<img src="logo.png"><small>JavaScript Events Library</small></h1>
+      <p><strong>SuperEvents</strong>
+        is a JavaScript library that handling any events in websites.
+        
+        Support all events action like:-
+        <span class="primary-color">Scroll,</span>
+        <span class="primary-color">Click,</span>
+        <span class="primary-color">Hover,</span>
+        <span class="primary-color">Mouse Move,</span>
+      </p>
+      <hr>
+      <ul id="main-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="api.html">API Documentation</a></li>
+        <li><a href="examples.html">Examples</a>
+          <ul>
+            <li><a href="examples.html#click">Click</a></li>
+            <li><a href="examples.html#hover">Hover</a></li>
+            <li><a href="examples.html#mousemove">Mouse Moving</a></li>
+            <li><a href="examples.html#scroll">Scroll</a></li>
+          </ul>
+        </li>
+        <li><a class="github" href="https://github.com/alzintani/SuperEvents" target="_blank">GitHub</a></li>
+      </ul>
+      <hr>
+    </div>
+    <div id="main"> 
+      <h2>Get Started!</h2>
+      <p>
+        Download the latest version of SuperEvents from
+        <a href="https://github.com/alzintani/SuperEvents/releases" target="_blank">GitHub repository.</a>
+        Then include <code>SuperEvents.min.js</code> to your HTML file.
+        
+        <pre><code class="language-html">&lt;script src=&quot;/path/to/SuperEvents.min.js&quot;&gt;&lt;/script&gt;</code></pre> And SuperEvents is ready to use now!
+        <p>
+          Do you have any issue?
+          <a href="https://github.com/alzintani/SuperEvents/issues" target="_blank">report it from here!.</a>
+        </p>
+      </p>
+      <div class="spacer"></div>
+      <h2>Quick Start</h2>
+      <p>First, you have to create an instance by passing the source element(s) and the target element(s) in object to SuperEvents, for example:-
+        <pre><code class="language-javascript">var scrollInstance = new SuperEvents({
+  source: document.getElementById('any-element-id'),
+  target: document.querySelectorAll('.click-example-target')
+});</code></pre>Then you have to call the event function and pass the required parameters (some of functions does't required any parameters or you can keep it empty to use default values) for example for scroll event call this function:
+        <pre><code class="language-javascript">var scrollEvent = scrollInstance.scroll({
+  indicator: '80%',
+  duration: '20%',
+});</code></pre><i>indicator and duration is the space where you can apply the action.</i>
+      </p>
+      <p>Then call the action function:-
+        <pre><code class="language-javascript">var scrollAction = scrollEvent.fromTo(
+  {
+    color: '#00FF00'
+  },
+  {
+    color: '#FF0000'
+  }
+);</code></pre>finally call the easing function like this way:-
+        <pre><code class="language-javascript">scrollAction.easing({
+  timing:'linear',
+  duration: 0.3,
+  delay: 0.3,
+  cubicBezier: false
+});</code></pre><i>easing function is Optional</i>
+      </p>
+      <p><a href="examples.html">See some examples with code</a></p>
+    </div>
+    <footer id="footer">
+      <hr>
+      <p>SuperEvents (c) Hassan Matooq</p>
+    </footer>
+    <script src="dist/SuperEvents.js"></script>
+    <script src="scripts/prismjs/prism.js"></script>
+    <script src="assets/js/javascript.min.js"></script>
+  </body>
+</html>

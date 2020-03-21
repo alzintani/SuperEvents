@@ -1,0 +1,77 @@
+
+- let pageTitle = 'SuperEvents - JavaScript Events Library'
+
+doctype html
+html(lang='en')
+  head
+    include includes/head.pug
+  body
+    include includes/header.pug
+
+    #main 
+
+      h2 Get Started!
+
+      p
+        | Download the latest version of SuperEvents from
+        |
+        a(href="https://github.com/alzintani/SuperEvents/releases" target="_blank") GitHub repository.
+        |
+        | Then include <code>SuperEvents.min.js</code> to your HTML file.
+        |
+        pre
+          code.language-html &lt;script src=&quot;/path/to/SuperEvents.min.js&quot;&gt;&lt;/script&gt;
+        |  And SuperEvents is ready to use now!
+        p
+          | Do you have any issue?
+          |
+          a(href="https://github.com/alzintani/SuperEvents/issues" target="_blank") report it from here!.
+
+      .spacer
+
+      h2 Quick Start
+
+      p
+        | First, you have to create an instance by passing the source element(s) and the target element(s) in object to SuperEvents, for example:-
+        pre
+          code.language-javascript
+            | var scrollInstance = new SuperEvents({
+            |   source: document.getElementById('any-element-id'),
+            |   target: document.querySelectorAll('.click-example-target')
+            | });
+        | Then you have to call the event function and pass the required parameters (some of functions does't required any parameters or you can keep it empty to use default values) for example for scroll event call this function:
+        pre
+          code.language-javascript
+            | var scrollEvent = scrollInstance.scroll({
+            |   indicator: '80%',
+            |   duration: '20%',
+            | });
+        i indicator and duration is the space where you can apply the action.
+      
+      p
+        | Then call the action function:-
+        pre
+          code.language-javascript
+            | var scrollAction = scrollEvent.fromTo(
+            |   {
+            |     color: '#00FF00'
+            |   },
+            |   {
+            |     color: '#FF0000'
+            |   }
+            | );
+        | finally call the easing function like this way:-
+        pre
+          code.language-javascript
+            | scrollAction.easing({
+            |   timing:'linear',
+            |   duration: 0.3,
+            |   delay: 0.3,
+            |   cubicBezier: false
+            |});
+        i easing function is Optional
+
+      p
+        a(href="examples.html") See some examples with code
+
+    include includes/footer.pug

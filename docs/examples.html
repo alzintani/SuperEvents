@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://superevents.org">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>SuperEvents - Examples</title>
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="scripts/prismjs/themes/prism.css">
+  </head>
+  <body>
+    <div id="left-side">
+      <h1 id="page-title">SuperEvents<img src="logo.png"><small>JavaScript Events Library</small></h1>
+      <p><strong>SuperEvents</strong>
+        is a JavaScript library that handling any events in websites.
+        
+        Support all events action like:-
+        <span class="primary-color">Scroll,</span>
+        <span class="primary-color">Click,</span>
+        <span class="primary-color">Hover,</span>
+        <span class="primary-color">Mouse Move,</span>
+      </p>
+      <hr>
+      <ul id="main-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="api.html">API Documentation</a></li>
+        <li><a href="examples.html">Examples</a>
+          <ul>
+            <li><a href="examples.html#click">Click</a></li>
+            <li><a href="examples.html#hover">Hover</a></li>
+            <li><a href="examples.html#mousemove">Mouse Moving</a></li>
+            <li><a href="examples.html#scroll">Scroll</a></li>
+          </ul>
+        </li>
+        <li><a class="github" href="https://github.com/alzintani/SuperEvents" target="_blank">GitHub</a></li>
+      </ul>
+      <hr>
+    </div>
+    <div id="main">
+      <p>Here you will find some examples that will help you to work with SuperEvents</p>
+      <div class="examples-menu"><a href="examples.html#click">Click Event Example</a>
+        <a href="examples.html#mousemove">Mouse Moving Event Example</a>
+        <a href="examples.html#hover">Hover Event Example</a>
+        <a href="examples.html#scroll">Scroll Event Example</a>
+      </div>
+      <hr>
+      <div class="examples">
+        <div class="example" id="click">
+          <h3>Click Example</h3>
+          <p>With this event you can handel the </p>
+          <div class="example-source click-example-source">Source</div>
+          <div class="example-target click-example-target">Target 1</div>
+          <div class="example-target click-example-target">Target 2</div>
+          <div class="example-target click-example-target">Target 3</div>
+          <div class="example-target click-example-target">Target 4</div>
+          <div class="row rows-1_2-1_2">
+            <div class="column">HTML
+              <pre><code class="language-html">&lt;div class=&quot;click-example-source&quot;&gt;Source&lt;/div&gt;
+
+&lt;div class=&quot;click-example-target&quot;&gt;Target 1&lt;/div&gt;
+&lt;div class=&quot;click-example-target&quot;&gt;Target 2&lt;/div&gt;
+&lt;div class=&quot;click-example-target&quot;&gt;Target 3&lt;/div&gt;
+&lt;div class=&quot;click-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
+            </div>
+            <div class="column">JS
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', scale: 0.5 }
+let eventTo = { backgroundColor: '#4693FF', scale: 1 }
+
+const source = document.querySelector('.click-example-source');
+const target = document.querySelectorAll('.click-example-target');
+
+const clickExample = new SuperEvents({
+  source: source,
+  target: target
+});
+clickExample.click().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="example" id="mousemove">
+          <h3>Mouse Move Example</h3>
+          <p>With this event you can handel the </p>
+          <div class="example-source mousemove-example-source">Source</div>
+          <div class="example-target mousemove-example-target">Target 1</div>
+          <div class="example-target mousemove-example-target">Target 2</div>
+          <div class="example-target mousemove-example-target">Target 3</div>
+          <div class="example-target mousemove-example-target">Target 4</div>
+          <div class="row rows-1_2-1_2">
+            <div class="column">HTML
+              <pre><code class="language-html">&lt;div class=&quot;mousemove-example-source&quot;&gt;Source&lt;/div&gt;
+
+&lt;div class=&quot;mousemove-example-target&quot;&gt;Target 1&lt;/div&gt;
+&lt;div class=&quot;mousemove-example-target&quot;&gt;Target 2&lt;/div&gt;
+&lt;div class=&quot;mousemove-example-target&quot;&gt;Target 3&lt;/div&gt;
+&lt;div class=&quot;mousemove-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
+            </div>
+            <div class="column">JS
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', scale: 0.5 }
+let eventTo = { backgroundColor: '#4693FF', scale: 1 }
+
+const source = document.querySelector('.mousemove-example-source');
+const target = document.querySelectorAll('.mousemove-example-target');
+
+const mousemoveExample = new SuperEvents({
+  source: source,
+  target: target
+});
+mousemoveExample.mousemove().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="example" id="hover">
+          <h3>Hover Example</h3>
+          <p>With this event you can handel the </p>
+          <div class="example-source hover-example-source">Source</div>
+          <div class="hover">
+            <div class="example-target hover-example-target">Target 1</div>
+          </div>
+          <div class="hover">
+            <div class="example-target hover-example-target">Target 2</div>
+          </div>
+          <div class="hover">
+            <div class="example-target hover-example-target">Target 3</div>
+          </div>
+          <div class="hover">
+            <div class="example-target hover-example-target">Target 4</div>
+          </div>
+          <div class="row rows-1_2-1_2">
+            <div class="column">HTML
+              <pre><code class="language-html">&lt;div class=&quot;hover-example-source&quot;&gt;Source&lt;/div&gt;
+
+&lt;div class=&quot;hover-example-target&quot;&gt;Target 1&lt;/div&gt;
+&lt;div class=&quot;hover-example-target&quot;&gt;Target 2&lt;/div&gt;
+&lt;div class=&quot;hover-example-target&quot;&gt;Target 3&lt;/div&gt;
+&lt;div class=&quot;hover-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
+            </div>
+            <div class="column">JS
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', rotateY: '90deg' }
+let eventTo = { backgroundColor: '#4693FF', rotateY: '0deg' }
+
+const source = document.querySelector('.hover-example-source');
+const target = document.querySelectorAll('.hover-example-target');
+
+const hoverExample = new SuperEvents({
+  source: source,
+  target: target
+});
+hoverExample.hover().fromTo( eventFrom, eventTo ).easing( 'ease-out', 0.4 );</code></pre>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="example" id="scroll">
+          <h3>Scroll Example</h3>
+          <p>With this event you can handel the </p>
+          <div class="example-target scroll-example-target">Target 1</div>
+          <div class="example-target scroll-example-target">Target 2</div>
+          <div class="example-target scroll-example-target">Target 3</div>
+          <div class="example-target scroll-example-target">Target 4</div>
+          <hr>
+          <div class="example-target scroll-example-target-2">Target 1</div>
+          <div class="example-target scroll-example-target-2">Target 2</div>
+          <div class="example-target scroll-example-target-2">Target 3</div>
+          <div class="example-target scroll-example-target-2">Target 4</div>
+          <div class="row rows-1_2-1_2">
+            <div class="column">HTML
+              <pre><code class="language-html">&lt;div class=&quot;scroll-example-target&quot;&gt;Target 1&lt;/div&gt;
+&lt;div class=&quot;scroll-example-target&quot;&gt;Target 2&lt;/div&gt;
+&lt;div class=&quot;scroll-example-target&quot;&gt;Target 3&lt;/div&gt;
+&lt;div class=&quot;scroll-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
+            </div>
+            <div class="column">JS
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', rotateX: '90deg' }
+let eventTo = { backgroundColor: '#4693FF', rotateX: '0deg' }
+
+const target = document.querySelectorAll('.scroll-example-target');
+
+const scrollExample = new SuperEvents({
+  source: window,
+  target: target
+});
+scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="example">
+          <h3>Scrolling Element Example</h3>
+          <p>With this event you can handel the </p>
+          <div>
+            <div class="scroll-div-container"><span>Scroll Down</span>
+              <p>test</p>
+              <p>tes</p>
+              <div class="scroll-div">
+                <div class="example-target scroll2-example-target">Target 1</div>
+                <div class="example-target scroll2-example-target">Target 2</div>
+                <div class="example-target scroll2-example-target">Target 3</div>
+                <div class="example-target scroll2-example-target">Target 4</div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row rows-1_2-1_2">
+            <div class="column">HTML
+              <pre><code class="language-html">&lt;div class=&quot;scroll-example-target&quot;&gt;Target 1&lt;/div&gt;
+&lt;div class=&quot;scroll-example-target&quot;&gt;Target 2&lt;/div&gt;
+&lt;div class=&quot;scroll-example-target&quot;&gt;Target 3&lt;/div&gt;
+&lt;div class=&quot;scroll-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
+            </div>
+            <div class="column">JS
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', rotateX: '90deg' }
+let eventTo = { backgroundColor: '#4693FF', rotateX: '0deg' }
+
+const target = document.querySelectorAll('.scroll-example-target');
+
+const scrollExample = new SuperEvents({
+  source: window,
+  target: target
+});
+scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<footer id="footer">
+  <hr>
+  <p>SuperEvents (c) Hassan Matooq</p>
+</footer>
+<script src="dist/SuperEvents.js"></script>
+<script src="scripts/prismjs/prism.js"></script>
+<script src="assets/js/javascript.min.js"></script>

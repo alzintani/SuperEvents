@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://superevents.org">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>SuperEvents - API Documentation</title>
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="scripts/prismjs/themes/prism.css">
+  </head>
+  <body>
+    <div id="left-side">
+      <h1 id="page-title">SuperEvents<img src="logo.png"><small>JavaScript Events Library</small></h1>
+      <p><strong>SuperEvents</strong>
+        is a JavaScript library that handling any events in websites.
+        
+        Support all events action like:-
+        <span class="primary-color">Scroll,</span>
+        <span class="primary-color">Click,</span>
+        <span class="primary-color">Hover,</span>
+        <span class="primary-color">Mouse Move,</span>
+      </p>
+      <hr>
+      <ul id="main-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="api.html">API Documentation</a></li>
+        <li><a href="examples.html">Examples</a>
+          <ul>
+            <li><a href="examples.html#click">Click</a></li>
+            <li><a href="examples.html#hover">Hover</a></li>
+            <li><a href="examples.html#mousemove">Mouse Moving</a></li>
+            <li><a href="examples.html#scroll">Scroll</a></li>
+          </ul>
+        </li>
+        <li><a class="github" href="https://github.com/alzintani/SuperEvents" target="_blank">GitHub</a></li>
+      </ul>
+      <hr>
+    </div>
+    <div id="main"> 
+      <h2>API Documentation</h2>
+      <div class="spacer"></div>
+      <div class="api-documentation">
+        <h3>Event Functions</h3>
+        <ul>
+          <li>
+            <h4>scroll( params = {} ): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>The scroll event fires when the document view or an element has been scrolled.</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li><strong>params:</strong>
+                    <ul>
+                      <li>name: params</li>
+                      <li>Description: The parameters</li>
+                      <li>type: object</li>
+                      <li>optional: true</li>
+                      <li>default: {object}</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.scroll({ indicator: '90%', duration: '60%', debug: false }).fromTo({ color: '#FFF' }, { color: '#999' })</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><strong>description:</strong>
+                <span>Gets the offset.</span>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h4>mousemove(): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>The mousemove function occurs when the mouse move over the selected element.</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.mousemove().fromTo({ color: '#FFF' }, { color: '#999' })</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h4>click(): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>Execute a JavaScript when moving the mouse pointer onto an image:</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.click().fromTo({ color: '#FFF' }, { color: '#999' })</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h4>hover(): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>The hover function occurs when the mouse pointer is over the selected element.</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.hover().fromTo({ color: '#FFF' }, { color: '#999' })</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="spacer"></div>
+        <h3>Action Functions</h3>
+        <ul>
+          <li>
+            <h4>call( callback ): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>call function description</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li><strong>params:</strong>
+                    <ul>
+                      <li>type: object</li>
+                      <li>name: params</li>
+                      <li>optional: true</li>
+                      <li>default: {object}</li>
+                      <li>Description: The parameters</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.call(p =&gt; document.querySelector('.class').style.top(`${p}px`))</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h4>fromTo( scrollEventFrom = {}, scrollEventTo = {} ): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>(From/To) function description</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li><strong>param:</strong>
+                    <ul>
+                      <li>type: object</li>
+                      <li>name: params</li>
+                      <li>optional: true</li>
+                      <li>default: {object}</li>
+                      <li>Description: The parameters</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.fromTo({ color: '#FFF' }, { color: '#999' })</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="spacer"></div>
+        <h3>Easing (Optional)</h3>
+        <ul>
+          <li>
+            <h4>easing( params = {} ): {object}</h4>
+            <ul>
+              <li><strong>description:</strong>
+                <span>easing function description</span>
+              </li>
+              <li><strong>Parameters:</strong>
+                <ul>
+                  <li><strong>params:</strong>
+                    <ul>
+                      <li>type: object</li>
+                      <li>name: params</li>
+                      <li>optional: true</li>
+                      <li>default: {object}</li>
+                      <li>Description: The parameters</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Example:
+                    <code class="language-javascript">event.click().fromTo({ color: '#FFF' }, { color: '#999' }).easing({ timing: 'linear', duration: 0.5, delay: 0, cubicBezier: fasle})</code>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <hr>
+        </ul>
+      </div>
+    </div>
+    <footer id="footer">
+      <hr>
+      <p>SuperEvents (c) Hassan Matooq</p>
+    </footer>
+    <script src="dist/SuperEvents.js"></script>
+    <script src="scripts/prismjs/prism.js"></script>
+    <script src="assets/js/javascript.min.js"></script>
+  </body>
+</html>

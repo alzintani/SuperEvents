@@ -1,0 +1,230 @@
+// main CSS style for SuperEvents
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: $light-color;
+  color: $dark-color;
+  padding: 10px;
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica Neue, Helvetica, Arial;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-weight: 500;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: $primary-color;
+  color: $light-color;
+  text-shadow: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, li  {
+  text-shadow: 0 0 1px #FFF, 0 0 1px #FFF;
+}
+
+h1 {
+  small {
+    display: block;
+    // margin-top: -10px;
+    font-size: 0.5em;
+  }
+}
+
+.spacer {
+  height: 30px;
+}
+
+h1, h2, h3, h4, h5, h6, .primary-color {
+  color: $primary-color;
+}
+
+@for $i from 1 through 6 {
+  $value: ($i - 7) * -1;
+  h#{$i} {
+    font-size:  #{$value/3}em;
+  }
+}
+
+// h2 {
+//   margin-top: 80px;
+// }
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-color;
+    text-decoration: underline;
+  }
+
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid $primary-color-light;
+  margin: 20px 0;
+  box-shadow: 0 0 1px #FFF, 0 0 1px #FFF;
+}
+
+
+#left-side {
+  line-height: 1.8;
+
+  #page-title {
+    img {
+      // display: inline-block;
+      max-width: 40px;
+    }
+  }
+  
+  #logo {
+    // text-align: center;
+    width: 100%;
+
+    img {
+      max-width: 20%;
+    }
+  }
+
+  ul#main-menu {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 10px;
+
+    li {
+
+      &:before {
+        content: " > ";
+        color: $primary-color-light;
+        font-size: 0.8em;
+        vertical-align: middle;
+      }
+      &:hover {
+        &:before {
+          color: $primary-color-dark;
+        }
+      }
+    }
+  }
+}
+
+#main {
+
+  h1, h2, h3, h4, h5, h6 {
+    display: table;
+
+    &:after {
+      content: " ";
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-top: 10px;
+      opacity: 0.5;
+      // background-color: $primary-color-light;
+      background-image: linear-gradient(to right, $primary-color 50%, $primary-color-light 50%);
+      box-shadow: 0 0 1px #FFF, 0 0 1px #FFF;
+    }
+  }
+  
+  ul {
+    padding-left: 15px;
+  }
+
+  .api-documentation {
+    // font-size: 0.85em;
+    // line-height: 1.6;
+
+    h4 {
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 1.4em;
+
+      &:after {
+        display: none;
+        background-image: none;
+      }
+    }
+  }
+
+  pre {
+    background-color: transparent;
+  }
+
+  .examples-menu {
+    a {
+      margin: 0;
+      margin-right: 10px;
+      text-decoration: underline;
+    }
+  }
+
+  .examples {
+    // margin: 150px 0;
+
+    .example {
+      // text-align: center;
+      margin: 50px auto;
+
+      .hover {
+        display: inline-block;
+        perspective: 500px;
+      }
+
+      .example-source,
+      .example-target {
+        text-align: center;
+        display: inline-block;
+        text-transform: uppercase;
+        padding: 10px 15px;
+        margin: 10px;
+        // width: 80px;
+        height: 50px;
+        line-height: 35px;
+        box-sizing: border-box;
+        border-radius: 5%;
+        text-shadow: none;
+        font-size: 1em;
+        font-weight: 700;
+      }
+      
+      .example-source {
+        border: 1px solid rgba(0,0,0,0.3);
+        cursor: pointer;
+      }
+      
+      .example-target {
+        color: #FFF;
+        background-color: rgba(10,40,230,0.3);
+      }
+
+      .scroll-div-container {
+        height: 200px;
+        padding: 20px;
+        overflow-y: scroll;
+        background-color: rgba(0,0,0,0.05);
+        text-align: center;
+
+        .scroll-div {
+          padding: 500px 10px 250px 10px;
+        }
+      }
+    }
+  }
+
+}

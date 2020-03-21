@@ -1,0 +1,157 @@
+
+- let pageTitle = 'SuperEvents - API Documentation'
+
+doctype html
+html(lang='en')
+  head
+    include includes/head.pug
+  body
+    include includes/header.pug
+
+    #main 
+
+      h2 API Documentation
+
+      .spacer
+
+
+      .api-documentation
+
+        h3 Event Functions
+
+        ul
+          each event in events
+
+            li
+              h4 #{event[0].tags[0].description}
+
+              each e in event
+
+                ul
+                  li
+                    strong description:
+                    |
+                    |
+                    span #{e.description}
+
+                  if e.tags.length > 2
+
+                    li
+
+                      strong Parameters:
+
+                      ul
+                        each tag in e.tags
+
+                          if tag.tag !== 'api' && tag.tag !== 'return' && tag.tag !== 'example'
+
+                            li
+                              strong #{tag.tag}:
+
+                              ul
+                                li name: #{tag.name}
+                                li Description: #{tag.description}
+                                li type: #{tag.type}
+                                li optional: #{tag.optional}
+                                li default: #{tag.default}
+
+                          if tag.tag === 'example'
+                            li
+                              | Example:
+                              |
+                              code.language-javascript
+                                | #{tag.description}
+
+        .spacer
+
+        h3 Action Functions
+
+        ul
+          each action in actions
+
+            li
+              h4 #{action.tags[0].description}
+
+              ul
+                li
+                  strong description:
+                  |
+                  |
+                  span #{action.description}
+
+                if action.tags.length > 2
+
+                  li
+                    strong Parameters:
+
+                    ul
+                      each tag in action.tags
+
+                        if tag.tag !== 'api' && tag.tag !== 'return' && tag.tag !== 'example'
+
+                          li
+                            strong #{tag.tag}:
+
+                            ul
+                              li type: #{tag.type}
+                              li name: #{tag.name}
+                              li optional: #{tag.optional}
+                              li default: #{tag.default}
+                              li Description: #{tag.description}
+
+                        if tag.tag === 'example'
+                          li
+                            | Example:
+                            |
+                            code.language-javascript
+                              | #{tag.description}
+
+        .spacer
+
+        h3 Easing (Optional)
+
+        ul
+          each ease in easing
+
+            li
+              h4 #{ease.tags[0].description}
+
+              ul
+                li
+                  strong description:
+                  |
+                  |
+                  span #{ease.description}
+
+                if ease.tags.length > 2
+
+                  li
+                    strong Parameters:
+
+                    ul
+
+                      each tag in ease.tags
+
+                        if tag.tag !== 'api' && tag.tag !== 'return' && tag.tag !== 'example'
+
+                          li
+                            strong #{tag.tag}:
+
+                            ul
+                              li type: #{tag.type}
+                              li name: #{tag.name}
+                              li optional: #{tag.optional}
+                              li default: #{tag.default}
+                              li Description: #{tag.description}
+
+                        if tag.tag === 'example'
+                          li
+                            | Example:
+                            |
+                            code.language-javascript
+                              | #{tag.description}
+
+
+            hr
+
+    include includes/footer.pug
