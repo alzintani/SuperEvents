@@ -152,13 +152,6 @@ html(lang='en')
           h3 Scroll Example
           p With this event you can handel the 
 
-          .example-target.scroll-example-target Target 1
-          .example-target.scroll-example-target Target 2
-          .example-target.scroll-example-target Target 3
-          .example-target.scroll-example-target Target 4
-
-          hr
-
           .example-target.scroll-example-target-2 Target 1
           .example-target.scroll-example-target-2 Target 2
           .example-target.scroll-example-target-2 Target 3
@@ -175,16 +168,15 @@ html(lang='en')
             .column JS
               pre
                 code.language-javascript
-                  | let eventFrom = { backgroundColor: '#49FF8E' }
-                  | let eventTo = { backgroundColor: '#FFE846' }
-                  |
-                  | const target = document.querySelectorAll('.scroll-example-target');
-                  |
-                  | const scrollExample = new SuperEvents({
-                  |   source: window,
-                  |   target: target
-                  | });
-                  | scrollExample.scroll().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.5, delay: 0 })
+                  | eventFrom = { backgroundColor: '#FF5549', scale: 0.2 };
+                  | eventTo = { backgroundColor: '#464EFF', scale: 1 };
+                  | 
+                  | var target2 = document.querySelectorAll('.scroll-example-target-2');
+                  | 
+                  | new SuperEvents(target2).scroll({
+                  |   indicator: '80%',
+                  |   duration: '20%',
+                  | }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.1, cubicBezier: false } );
 
 
 
