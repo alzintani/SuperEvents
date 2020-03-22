@@ -42,8 +42,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }).click().fromTo(eventFrom, eventTo).easing({
           timing: 'ease-out',
           duration: 0.3,
-          delay: 0.1,
-          cubicBezier: false
+          delay: 0.1
         });
         var eventFrom2 = {
           backgroundColor: '#FF4971'
@@ -56,7 +55,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         source && new SuperEvents({
           source: source,
           target: target
-        }).mousemove().fromTo(eventFrom2, eventTo2).easing(easing, duration, false, ease);
+        }).mousemove().fromTo(eventFrom2, eventTo2);
         eventFrom = {
           translateX: '300px',
           opacity: 0.1

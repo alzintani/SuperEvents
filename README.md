@@ -186,7 +186,7 @@ git remote add upstream https://github.com/alzintani/SuperEvents.git
 ```
 
 
-Install required packages `npm install` then run `npm run-script build` to build main files and documentation files.
+Install required packages `npm install` then run `npm run build` to build main files and documentation files.
 
 Now you can run `npm start`
 

@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://superevents.org">
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
     <title>SuperEvents - Examples</title>
     <link rel="stylesheet" href="assets/css/style.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
   </head>
   <body>
     <div id="left-side">
-      <h1 id="page-title">SuperEvents<img src="../logo.png"><small>JavaScript Events Library</small></h1>
+      <h1 id="page-title">SuperEvents<img src="logo.png"><small>JavaScript Events Library</small></h1>
       <p><strong>SuperEvents</strong>
         is a JavaScript library that handling any events in websites.
         
@@ -75,7 +75,7 @@ const clickExample = new SuperEvents({
   source: source,
   target: target
 });
-clickExample.click().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+clickExample.click().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.3, delay: 0.1 });</code></pre>
             </div>
           </div>
         </div>
@@ -98,8 +98,8 @@ clickExample.click().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code
 &lt;div class=&quot;mousemove-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
             </div>
             <div class="column">JS
-              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', scale: 0.5 }
-let eventTo = { backgroundColor: '#4693FF', scale: 1 }
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971' }
+let eventTo = { backgroundColor: '#4693FF' }
 
 const source = document.querySelector('.mousemove-example-source');
 const target = document.querySelectorAll('.mousemove-example-target');
@@ -108,7 +108,7 @@ const mousemoveExample = new SuperEvents({
   source: source,
   target: target
 });
-mousemoveExample.mousemove().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+mousemoveExample.mousemove().fromTo( eventFrom2, eventTo2 )</code></pre>
             </div>
           </div>
         </div>
@@ -139,8 +139,8 @@ mousemoveExample.mousemove().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 
 &lt;div class=&quot;hover-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
             </div>
             <div class="column">JS
-              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', rotateY: '90deg' }
-let eventTo = { backgroundColor: '#4693FF', rotateY: '0deg' }
+              <pre><code class="language-javascript">let eventFrom = { translateX: '300px', opacity: 0.1 }
+let eventTo = { translateX: '0', opacity: 1 }
 
 const source = document.querySelector('.hover-example-source');
 const target = document.querySelectorAll('.hover-example-target');
@@ -149,7 +149,7 @@ const hoverExample = new SuperEvents({
   source: source,
   target: target
 });
-hoverExample.hover().fromTo( eventFrom, eventTo ).easing( 'ease-out', 0.4 );</code></pre>
+hoverExample.hover().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.3, delay: 0.3, cubicBezier: false });</code></pre>
             </div>
           </div>
         </div>
@@ -174,8 +174,8 @@ hoverExample.hover().fromTo( eventFrom, eventTo ).easing( 'ease-out', 0.4 );</co
 &lt;div class=&quot;scroll-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
             </div>
             <div class="column">JS
-              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', rotateX: '90deg' }
-let eventTo = { backgroundColor: '#4693FF', rotateX: '0deg' }
+              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#49FF8E' }
+let eventTo = { backgroundColor: '#FFE846' }
 
 const target = document.querySelectorAll('.scroll-example-target');
 
@@ -183,7 +183,7 @@ const scrollExample = new SuperEvents({
   source: window,
   target: target
 });
-scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+scrollExample.scroll().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.5, delay: 0 })</code></pre>
             </div>
           </div>
         </div>
@@ -192,8 +192,6 @@ scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</co
           <p>With this event you can handel the </p>
           <div>
             <div class="scroll-div-container"><span>Scroll Down</span>
-              <p>test</p>
-              <p>tes</p>
               <div class="scroll-div">
                 <div class="example-target scroll2-example-target">Target 1</div>
                 <div class="example-target scroll2-example-target">Target 2</div>
@@ -211,16 +209,16 @@ scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</co
 &lt;div class=&quot;scroll-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
             </div>
             <div class="column">JS
-              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#FF4971', rotateX: '90deg' }
-let eventTo = { backgroundColor: '#4693FF', rotateX: '0deg' }
+              <pre><code class="language-javascript">eventFrom = { backgroundColor: '#FFAAA4' }
+eventTo = { backgroundColor: '#9BA0FF' }
 
-const target = document.querySelectorAll('.scroll-example-target');
+let source3 = document.querySelector('.scroll-div-container')
+let target3 = source3.querySelectorAll('.scroll2-example-target')
 
-const scrollExample = new SuperEvents({
-  source: window,
-  target: target
-});
-scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</code></pre>
+new SuperEvents({ source: source3, target: target3}).scroll({
+  indicator: '80%',
+  duration: '60%',
+}).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.15, cubicBezier: false } );</code></pre>
             </div>
           </div>
         </div>
@@ -232,6 +230,6 @@ scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );</co
   <hr>
   <p>SuperEvents (c) Hassan Matooq</p>
 </footer>
-<script src="../dist/SuperEvents.js"></script>
+<script src="dist/SuperEvents.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/prism.min.js"></script>
 <script src="assets/js/javascript.min.js"></script>

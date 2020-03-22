@@ -63,7 +63,7 @@ html(lang='en')
                   |   source: source,
                   |   target: target
                   | });
-                  | clickExample.click().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );
+                  | clickExample.click().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.3, delay: 0.1 });
 
         hr
 
@@ -91,8 +91,8 @@ html(lang='en')
             .column JS
               pre
                 code.language-javascript
-                  | let eventFrom = { backgroundColor: '#FF4971', scale: 0.5 }
-                  | let eventTo = { backgroundColor: '#4693FF', scale: 1 }
+                  | let eventFrom = { backgroundColor: '#FF4971' }
+                  | let eventTo = { backgroundColor: '#4693FF' }
                   |
                   | const source = document.querySelector('.mousemove-example-source');
                   | const target = document.querySelectorAll('.mousemove-example-target');
@@ -101,7 +101,7 @@ html(lang='en')
                   |   source: source,
                   |   target: target
                   | });
-                  | mousemoveExample.mousemove().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );
+                  | mousemoveExample.mousemove().fromTo( eventFrom2, eventTo2 )
 
         hr
 
@@ -132,8 +132,8 @@ html(lang='en')
             .column JS
               pre
                 code.language-javascript
-                  | let eventFrom = { backgroundColor: '#FF4971', rotateY: '90deg' }
-                  | let eventTo = { backgroundColor: '#4693FF', rotateY: '0deg' }
+                  | let eventFrom = { translateX: '300px', opacity: 0.1 }
+                  | let eventTo = { translateX: '0', opacity: 1 }
                   |
                   | const source = document.querySelector('.hover-example-source');
                   | const target = document.querySelectorAll('.hover-example-target');
@@ -142,7 +142,7 @@ html(lang='en')
                   |   source: source,
                   |   target: target
                   | });
-                  | hoverExample.hover().fromTo( eventFrom, eventTo ).easing( 'ease-out', 0.4 );
+                  | hoverExample.hover().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.3, delay: 0.3, cubicBezier: false });
 
 
 
@@ -175,8 +175,8 @@ html(lang='en')
             .column JS
               pre
                 code.language-javascript
-                  | let eventFrom = { backgroundColor: '#FF4971', rotateX: '90deg' }
-                  | let eventTo = { backgroundColor: '#4693FF', rotateX: '0deg' }
+                  | let eventFrom = { backgroundColor: '#49FF8E' }
+                  | let eventTo = { backgroundColor: '#FFE846' }
                   |
                   | const target = document.querySelectorAll('.scroll-example-target');
                   |
@@ -184,7 +184,7 @@ html(lang='en')
                   |   source: window,
                   |   target: target
                   | });
-                  | scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );
+                  | scrollExample.scroll().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.5, delay: 0 })
 
 
 
@@ -195,8 +195,6 @@ html(lang='en')
           div
             .scroll-div-container
               span Scroll Down
-              p test
-              p tes
               .scroll-div
                 .example-target.scroll2-example-target Target 1
                 .example-target.scroll2-example-target Target 2
@@ -216,16 +214,16 @@ html(lang='en')
             .column JS
               pre
                 code.language-javascript
-                  | let eventFrom = { backgroundColor: '#FF4971', rotateX: '90deg' }
-                  | let eventTo = { backgroundColor: '#4693FF', rotateX: '0deg' }
+                  | eventFrom = { backgroundColor: '#FFAAA4' }
+                  | eventTo = { backgroundColor: '#9BA0FF' }
                   |
-                  | const target = document.querySelectorAll('.scroll-example-target');
+                  | let source3 = document.querySelector('.scroll-div-container')
+                  | let target3 = source3.querySelectorAll('.scroll2-example-target')
                   |
-                  | const scrollExample = new SuperEvents({
-                  |   source: window,
-                  |   target: target
-                  | });
-                  | scrollExample.scroll().fromTo( eventFrom, eventTo ).easing( 'linear', 0.1 );
+                  | new SuperEvents({ source: source3, target: target3}).scroll({
+                  |   indicator: '80%',
+                  |   duration: '60%',
+                  | }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.15, cubicBezier: false } );
 
 
 include includes/footer.pug

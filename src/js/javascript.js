@@ -26,19 +26,19 @@
 
       source = document.querySelector('.click-example-source')
       target = document.querySelectorAll('.click-example-target')
-      new SuperEvents({ source: source, target: target }).click().fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.1, cubicBezier: false } )
+      new SuperEvents({ source: source, target: target }).click().fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.1} )
 
       let eventFrom2 = { backgroundColor: '#FF4971' }
       let eventTo2 = { backgroundColor: '#4693FF' }
       source = document.querySelector('.mousemove-example-source')
       target = document.querySelectorAll('.mousemove-example-target')
-      source && new SuperEvents({ source: source, target: target }).mousemove().fromTo( eventFrom2, eventTo2 ).easing( easing, duration, false, ease )
+      source && new SuperEvents({ source: source, target: target }).mousemove().fromTo( eventFrom2, eventTo2 )
 
       eventFrom = { translateX: '300px', opacity: 0.1 }
       eventTo = { translateX: '0', opacity: 1 }
       source = document.querySelector('.hover-example-source')
       target = document.querySelectorAll('.hover-example-target')
-      source && new SuperEvents({ source: source, target: target }).hover().fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.3, cubicBezier: false } )
+      source && new SuperEvents({ source: source, target: target }).hover().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.3, delay: 0.3, cubicBezier: false })
 
 
       eventFrom = { backgroundColor: '#49FF8E' }
@@ -47,7 +47,7 @@
       target && new SuperEvents(target).scroll({
         indicator: '80%',
         duration: '80%',
-      }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.5, delay: 0 } )
+      }).fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.5, delay: 0 })
 
       eventFrom = { backgroundColor: '#FF5549', scale: 0.2 }
       eventTo = { backgroundColor: '#464EFF', scale: 1 }
