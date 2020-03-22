@@ -167,7 +167,7 @@ scroll( params = {} ) {
    * @param      {<type>}  object  The object
    * @return     {<type>}  The offset.
    */
-  getOffset = object => {
+  const getOffset = object => {
     let offset = {
       height: this.helper.object.innerHeight ? this.helper.object.innerHeight : this.helper.object.scrollHeight, // innerHeight for window
       width: this.helper.object.innerWidth ? this.helper.object.innerWidth : this.helper.object.scrollWidth,

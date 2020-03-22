@@ -157,11 +157,6 @@ hoverExample.hover().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', d
         <div class="example" id="scroll">
           <h3>Scroll Example</h3>
           <p>With this event you can handel the </p>
-          <div class="example-target scroll-example-target">Target 1</div>
-          <div class="example-target scroll-example-target">Target 2</div>
-          <div class="example-target scroll-example-target">Target 3</div>
-          <div class="example-target scroll-example-target">Target 4</div>
-          <hr>
           <div class="example-target scroll-example-target-2">Target 1</div>
           <div class="example-target scroll-example-target-2">Target 2</div>
           <div class="example-target scroll-example-target-2">Target 3</div>
@@ -174,16 +169,15 @@ hoverExample.hover().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', d
 &lt;div class=&quot;scroll-example-target&quot;&gt;Target 4&lt;/div&gt;</code></pre>
             </div>
             <div class="column">JS
-              <pre><code class="language-javascript">let eventFrom = { backgroundColor: '#49FF8E' }
-let eventTo = { backgroundColor: '#FFE846' }
-
-const target = document.querySelectorAll('.scroll-example-target');
-
-const scrollExample = new SuperEvents({
-  source: window,
-  target: target
-});
-scrollExample.scroll().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.5, delay: 0 })</code></pre>
+              <pre><code class="language-javascript">eventFrom = { backgroundColor: '#FF5549', scale: 0.2 };
+eventTo = { backgroundColor: '#464EFF', scale: 1 };
+ 
+var target2 = document.querySelectorAll('.scroll-example-target-2');
+ 
+new SuperEvents(target2).scroll({
+  indicator: '80%',
+  duration: '20%',
+}).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.1, cubicBezier: false } );</code></pre>
             </div>
           </div>
         </div>

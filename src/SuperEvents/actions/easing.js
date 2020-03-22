@@ -6,7 +6,7 @@
  * @params      {object}   [params={object}]   The parameters
  * @return     {Object}   instance            This function will return SuperEvent instance
  * 
- * @example    example    event.click().fromTo({ color: '#FFF' }, { color: '#999' }).easing({ timing: 'linear', duration: 0.5, delay: 0, cubicBezier: fasle})
+ * @example    example    event.click().fromTo({ color: '#FFF' }, { color: '#999' }).easing({ timing: 'linear', duration: 0.5, delay: 0, cubicBezier: false})
  * 
  */
 easing( params = {} ) {
