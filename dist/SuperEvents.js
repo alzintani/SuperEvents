@@ -499,7 +499,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       value: function easing() {
         var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var timing = params.timing || 'linear';
-        var duration = params.duration || 0.5;
+        var duration = params.duration || 0;
         var delay = params.delay || 0;
         var cubicBezier = !!params.cubicBezier || false;
 

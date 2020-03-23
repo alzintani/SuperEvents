@@ -12,7 +12,7 @@
 easing( params = {} ) {
 
   let timing = params.timing || 'linear'
-  let duration = params.duration || 0.5
+  let duration = params.duration || 0
   let delay = params.delay || 0
   let cubicBezier = !!params.cubicBezier || false
 

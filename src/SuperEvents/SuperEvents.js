@@ -1,5 +1,6 @@
 
 ( function ( root, factory ) {
+  'use strict'
 
   if (typeof define === 'function' && define.amd) {
       // AMD. Register as an anonymous module.
@@ -15,6 +16,7 @@
   }
 
 }( typeof self !== 'undefined' ? self : this, function ( b ) {
+  'use strict'
 
   /**
    * This class describes SuperEvents.
