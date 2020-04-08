@@ -1,5 +1,5 @@
 {
-  "name": "superevents",
+  "name": "@alzintani/superevents",
   "version": "0.1.0",
   "description": "JavaScript library that handling any events in websites.",
   "main": "gulpfile.js",

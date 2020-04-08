@@ -50,7 +50,6 @@ scroll( params = {} ) {
     } else if ( _progress < 0 ) {
       _progress = 0
     }
-
     call( _progress.toFixed(5) )
   }
 
@@ -96,10 +95,10 @@ scroll( params = {} ) {
     const duration  = getIndicatorsPosition( isNaN( parseInt( params.duration ) ) ? 0 : params.duration )
 
     const start     = el.offsetTop
-    const end       = el.offsetBottom
-
+    const end       = start + el.offsetHeight
     const _end      = isNaN( parseInt( params.duration ) ) ? end + scrollableHeight : start + duration
 
+    console.log( scrollableHeight, duration, end )
     this.params._sourceScrolling = {
       indicator:  indicator,
       runnigArea: _end - start,
@@ -222,14 +221,13 @@ scroll( params = {} ) {
     this.helper(start).addClass('suprescrolling-debug').css(style, { top: `${_start}px` }).text( 'Start' )
     this.helper(end).addClass('suprescrolling-debug').css(style, { top: `${_end}px` }).text( 'End' )
 
-    if ( this.eventTarget instanceof Element || this.eventTarget[0] instanceof Element ) {
-      parent = typeof this.eventTarget !== 'object' ? this.eventTarget.parentNode : this.eventTarget[0].parentNode
-      parent.appendChild(start)
-      parent.appendChild(end)
+    if ( this.eventTarget instanceof Element ) {
+      parent = this.eventTarget.parentNode
     } else {
-      parent.appendChild(start)
-      parent.appendChild(end)
+      parent = this.eventTarget[0].parentNode
     }
+    parent.appendChild(start)
+    parent.appendChild(end)
 
   }
 
