@@ -19,28 +19,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['b'], factory);
-  } else if ((typeof module === "undefined" ? "undefined" : _typeof(module)) === 'object' && module.exports) {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory(require('b'));
-  } else {
-    // Browser globals (root is window)
-    root.SuperEvents = factory(root.b);
-  }
-})(typeof self !== 'undefined' ? self : this, function (b) {
-  var _temp;
+(function (window, factory) {
+  'use strict'; // AMD. Register as an anonymous module.  Wrap in function so we have access
+  // to root via `this`.
 
+  if (typeof define === 'function' && define.amd) {
+    define([], function () {
+      window.SuperEvents = factory.call(window);
+      return window.SuperEvents;
+    });
+  } // Node. Does not work with strict CommonJS, but only CommonJS-like
+  // environments that support module.exports, like Node.
+  else if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
+      module.exports = factory.call(window);
+    } // Browser globals.
+    else {
+        window.SuperEvents = factory.call(window);
+      }
+})((typeof global === "undefined" ? "undefined" : _typeof(global)) === 'object' ? global : this, function () {
+  'use strict';
   /**
    * This class describes SuperEvents.
    *
    * @class      SuperEvents (name)
    */
-  return _temp = /*#__PURE__*/function () {
+
+  var SuperEvents = /*#__PURE__*/function () {
     /**
      * The current version of SuperEvents
      */
@@ -80,7 +84,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _defineProperty(this, "params", {});
 
       // Exit if error in elements
-      if (_typeof(elements) !== 'object' || elements.source === null || elements.target === null) {
+      if (_typeof(elements) !== 'object' || elements.length < 1) {
         throw new TypeError('You must use correct HTML elements.');
       } // start initialize SuperEvents
 
@@ -499,7 +503,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       value: function easing() {
         var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var timing = params.timing || 'linear';
-        var duration = params.duration || 0.5;
+        var duration = params.duration || 0;
         var delay = params.delay || 0;
         var cubicBezier = !!params.cubicBezier || false;
 
@@ -660,18 +664,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var _this3 = this;
 
         var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
+        var listener = false;
         /*
          * { function_description }
          *
          * @params      {Function}  playCallBack  The play call back
          */
+
         this._sourceEvent = function (playCallBack) {
           document.addEventListener(params.listener && params.listener !== 'load' ? params.listener : 'DOMContentLoaded', function () {
             return runScrollEvent(playCallBack);
           });
+          window.addEventListener('load', getScrollingPosition);
           window.addEventListener('resize', getScrollingPosition);
-          playCallBack(0);
         };
         /*
          * 
@@ -682,10 +687,33 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         var runScrollEvent = function runScrollEvent(call) {
           getScrollingPosition();
+          scrollEvent(call);
+        };
+        /*
+         * { function_description }
+         *
+         * @param      {Function}  call    The call
+         * @param      {number}    top     The top
+         */
 
-          _this3.eventSource.addEventListener('scroll', function () {
-            return scrollEvent(call);
-          });
+
+        var eventScrollTop = function eventScrollTop(call) {
+          var _this3$params$_source = _this3.params._sourceScrolling,
+              indicator = _this3$params$_source.indicator,
+              runnigArea = _this3$params$_source.runnigArea,
+              start = _this3$params$_source.start;
+          var top = (typeof _this3.eventSource.scrollY === 'number' ? _this3.eventSource.scrollY : _this3.eventSource.scrollTop) + indicator;
+
+          var _progress = (top - start) / runnigArea; // get _progress when start element in viewport from 0 to 1
+
+
+          if (_progress > 1) {
+            _progress = 1;
+          } else if (_progress < 0) {
+            _progress = 0;
+          }
+
+          call(_progress.toFixed(5));
         };
         /*
          * 
@@ -695,63 +723,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         var scrollEvent = function scrollEvent(call) {
-          var _this3$params$_source = _this3.params._sourceScrolling,
-              _indicator = _this3$params$_source._indicator,
-              _duration = _this3$params$_source._duration,
-              _runnigArea = _this3$params$_source._runnigArea;
-          var _this3$params$_target = _this3.params._targetScrolling,
-              _start = _this3$params$_target._start,
-              _end = _this3$params$_target._end;
+          eventScrollTop(call);
 
-          var _inAout = inAout(_indicator, _duration),
-              _in = _inAout._in,
-              _out = _inAout._out;
+          var eventListener = function eventListener() {
+            var _this3$params$_source2 = _this3.params._sourceScrolling,
+                indicator = _this3$params$_source2.indicator,
+                start = _this3$params$_source2.start,
+                end = _this3$params$_source2.end;
+            var top = (typeof _this3.eventSource.scrollY === 'number' ? _this3.eventSource.scrollY : _this3.eventSource.scrollTop) + indicator;
 
-          var runnig = true;
-          var _progress = 0;
-          var _height = getOffset(_this3.eventSource).height; // (eventSource) space height
-
-          if ('OutOfViewPort' === _duration) {
-            _out = _this3.eventSource.scrollY;
-            _in = _out + _height;
-
-            if (_in > _start && _out < _end) {
-              _progress = (_in - _start) / (_height + getOffset(_this3.eventTarget).height);
-              call(_progress.toFixed(5));
-              runnig = true;
+            if (top < start) {
+              call(0);
+            } else if (top > end) {
+              call(1);
+            } else {
+              eventScrollTop(call);
             }
-          } else {
-            if (_in < _start) call(0); // TODO: check this one
-            else if (_out > _start) call(1);
 
-            if (_in > _start && _out < _start) {
-              _progress = (_in - _start) / _runnigArea; // get _progress when start element in viewport from 0 to 1
-
-              call(_progress.toFixed(5));
-              runnig = true;
-            } else if (runnig) {
-              call(+(_in > _start));
-              runnig = false;
-            }
-          }
-        };
-        /*
-         * { function_description }
-         *
-         * @param      {<type>}  _indicator  The indicator
-         * @param      {<type>}  _duration   The duration
-         * @return     {Object}  { description_of_the_return_value }
-         */
-
-
-        var inAout = function inAout(_indicator, _duration) {
-          var eventScrollTop = typeof _this3.eventSource.scrollY === 'number' ? _this3.eventSource.scrollY : _this3.eventSource.scrollTop;
-          return {
-            _in: _indicator + eventScrollTop,
-            // get real position of (_indicator) in page,
-            _out: _duration + eventScrollTop // get real position of (_duration) in page,
-
+            listener = true;
           };
+
+          !listener && _this3.eventSource.addEventListener('scroll', eventListener, true);
         };
         /*
          * Gets the scrolling position.
@@ -762,38 +754,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         var getScrollingPosition = function getScrollingPosition() {
-          var indicator = getIndicatorsPosition(params.indicator || 90); // get indicator value
+          var _params$indicator;
 
-          var duration = params.duration || 60;
-          duration = isNaN(parseInt(duration)) ? 'OutOfViewPort' : getIndicatorsPosition(duration); // get duration value
+          var scrollableHeight = typeof _this3.eventSource.innerHeight === 'number' ? _this3.eventSource.innerHeight : _this3.eventSource.offsetHeight;
+          var el = _this3.eventTarget instanceof Element ? _this3.eventTarget : _this3.eventTarget[0];
+          var rect = el.getBoundingClientRect();
+          var indicator = getIndicatorsPosition((_params$indicator = params.indicator) !== null && _params$indicator !== void 0 ? _params$indicator : 90); // get indicator value
 
-          {
-            // get indicator and duration position 
-            var scrollingPosition = {
-              _indicator: indicator,
-              _duration: duration,
-              _runnigArea: indicator - duration
-            };
-            _this3.params._sourceScrolling = scrollingPosition;
-          }
-          {
-            var setTargetArgs = function setTargetArgs(el) {
-              var offsetTop = typeof _this3.eventSource.offsetTop === 'number' ? el.offsetTop - _this3.eventSource.offsetTop : el.offsetTop;
-              var scrollableHeight = typeof _this3.eventSource.innerHeight === 'number' ? _this3.eventSource.innerHeight : _this3.eventSource.offsetHeight;
-              var start = offsetTop > scrollableHeight ? offsetTop : indicator + 1;
-              var height = el.offsetHeight > scrollableHeight ? scrollableHeight : el.offsetHeight;
-              var args = {
-                _start: start,
-                _end: start + height,
-                _height: height,
-                _left: el.offsetLeft
-              };
-              _this3.params._targetScrolling = args;
-            };
+          var duration = getIndicatorsPosition(isNaN(parseInt(params.duration)) ? 0 : params.duration);
+          var start = el.offsetTop;
+          var end = el.offsetBottom;
 
-            var element = _this3.eventTarget instanceof Element ? _this3.eventTarget : _this3.eventTarget[0];
-            setTargetArgs(element);
-          }
+          var _end = isNaN(parseInt(params.duration)) ? end + scrollableHeight : start + duration;
+
+          _this3.params._sourceScrolling = {
+            indicator: indicator,
+            runnigArea: _end - start,
+            start: start,
+            end: _end
+          };
           params.debug === true && scrollDebugging();
         };
         /*
@@ -805,27 +784,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         var getIndicatorsPosition = function getIndicatorsPosition(num) {
-          num = Math.abs(parseInt(num));
           var height = typeof _this3.eventSource.innerHeight === 'number' ? _this3.eventSource.innerHeight : _this3.eventSource.offsetHeight;
+          num = Math.abs(parseInt(num));
+          num = num <= 100 ? num : 0;
           return Math.round(num / 100 * height);
-        };
-        /**
-         * Gets the offset.
-         *
-         * @param      {<type>}  object  The object
-         * @return     {<type>}  The offset.
-         */
-
-
-        getOffset = function getOffset(object) {
-          var offset = {
-            height: _this3.helper.object.innerHeight ? _this3.helper.object.innerHeight : _this3.helper.object.scrollHeight,
-            // innerHeight for window
-            width: _this3.helper.object.innerWidth ? _this3.helper.object.innerWidth : _this3.helper.object.scrollWidth,
-            top: _this3.helper.object.innerHeight ? 0 : _this3.helper.object.offsetTop,
-            left: _this3.helper.object.innerWidth ? 0 : _this3.helper.object.offsetLeft
-          };
-          return offset;
         };
         /*
          * 
@@ -835,12 +797,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         var scrollDebugging = function scrollDebugging() {
-          // let debug = document.querySelectorAll('.suprescrolling-debug')
-          // if ( debug ) {
-          //   Array.prototype.forEach.call( debug, el => {
-          //     el.parentNode.removeChild( el )
-          //   })
-          // }
+          var debug = document.querySelectorAll('.suprescrolling-debug');
+
+          if (debug) {
+            Array.prototype.forEach.call(debug, function (el) {
+              el.parentNode.removeChild(el);
+            });
+          }
+
           scrollingPositionDebug();
           targetPositionDebug();
         };
@@ -854,31 +818,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         var scrollingPositionDebug = function scrollingPositionDebug() {
-          var _this3$params$_source2 = _this3.params._sourceScrolling,
-              _indicator = _this3$params$_source2._indicator,
-              _duration = _this3$params$_source2._duration;
-          var indicator = document.createElement('HR');
-          var duration = document.createElement('HR');
+          var _this3$params$_source3 = _this3.params._sourceScrolling,
+              indicator = _this3$params$_source3.indicator,
+              duration = _this3$params$_source3.duration;
+
+          var _indicator = document.createElement('HR');
+
+          var parent = document.body;
           var style = {
             textAlign: 'left',
             position: 'absolute',
-            border: 'none',
-            borderTop: '1px solid #FF0000',
+            color: '#FF0000',
+            border: '0',
+            borderBottom: '1px solid #FF0000',
             zIndex: '99999',
             width: '95%',
-            opacity: '0.7',
+            opacity: '0.9',
             left: '0',
-            fontSize: '0.8rem'
+            height: '20px',
+            padding: '0 10px',
+            fontSize: '14px'
           };
-          var parent = document.body;
 
-          _this3.helper(indicator).addClass('suprescrolling-debug').css(style, {
-            top: _indicator + 'px'
+          _this3.helper(_indicator).addClass('suprescrolling-debug').css(style, {
+            top: indicator - 20 + 'px'
           }).text('Indicator');
-
-          _this3.helper(duration).addClass('suprescrolling-debug').css(style, {
-            top: _duration + 'px'
-          }).text('Duration');
 
           if (typeof _this3.eventSource.parentNode !== 'undefined') {
             parent = _this3.eventSource.parentNode;
@@ -887,17 +851,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               position: 'relative'
             });
           } else {
-            _this3.helper(indicator).css({
-              position: 'fixed'
-            });
-
-            _this3.helper(duration).css({
+            _this3.helper(_indicator).css({
               position: 'fixed'
             });
           }
 
-          parent.appendChild(indicator);
-          parent.appendChild(duration);
+          parent.appendChild(_indicator);
         };
         /*
          * DEBUG
@@ -916,46 +875,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             opacity: '0.7',
             margin: '0',
             padding: '0',
-            // left: '0',
-            // top: '0',
+            color: '#FF0000',
+            left: '50px',
+            top: '0',
             fontSize: '0.8rem'
           };
+          var parent = document.body;
           var start = document.createElement('HR');
           var end = document.createElement('HR');
+          var _start = _this3.params._sourceScrolling.start;
+          var _end = _this3.params._sourceScrolling.end;
 
-          _this3.helper(start).addClass('suprescrolling-debug').css(style).text('Start ');
+          _this3.helper(start).addClass('suprescrolling-debug').css(style, {
+            top: "".concat(_start, "px")
+          }).text('Start');
 
-          _this3.helper(end).addClass('suprescrolling-debug').css(style).text('End');
+          _this3.helper(end).addClass('suprescrolling-debug').css(style, {
+            top: "".concat(_end, "px")
+          }).text('End');
 
-          if (_this3.eventTarget instanceof Element) {
-            _this3.helper(end).addClass('suprescrolling-debug').css(style, {
-              top: _this3.params._targetScrolling._start + 'px'
-            }).text('End');
-
-            _this3.eventTarget.appendChild(start);
-
-            _this3.eventTarget.appendChild(end);
-          } else if (_this3.eventTarget[0] instanceof Element) {
-            Array.prototype.forEach.call(_this3.eventTarget, function (el) {
-              _this3.helper(_this3.eventSource).css({
-                position: 'relative'
-              });
-
-              var start2 = start.cloneNode(true);
-              var end2 = end.cloneNode(true);
-
-              _this3.helper(start2).css({
-                top: _this3.params._targetScrolling._start + 'px'
-              });
-
-              _this3.helper(end2).css({
-                top: _this3.params._targetScrolling._end + 'px'
-              });
-
-              el.appendChild(start2);
-              el.appendChild(end2);
-            }); // start.remove()
-            // end.remove()
+          if (_this3.eventTarget instanceof Element || _this3.eventTarget[0] instanceof Element) {
+            parent = _typeof(_this3.eventTarget) !== 'object' ? _this3.eventTarget.parentNode : _this3.eventTarget[0].parentNode;
+            parent.appendChild(start);
+            parent.appendChild(end);
+          } else {
+            parent.appendChild(start);
+            parent.appendChild(end);
           }
         };
 
@@ -1100,5 +1045,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }]);
 
     return SuperEvents;
-  }(), _temp;
+  }();
+
+  return SuperEvents;
 });

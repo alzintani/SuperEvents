@@ -40,34 +40,23 @@
       target = document.querySelectorAll('.hover-example-target')
       source && new SuperEvents({ source: source, target: target }).hover().fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.3, delay: 0.3, cubicBezier: false })
 
-
-      eventFrom = { backgroundColor: '#49FF8E' }
-      eventTo = { backgroundColor: '#FFE846' }
-      target = document.querySelectorAll('.scroll-example-target')
-      target && new SuperEvents(target).scroll({
-        indicator: '80%',
-        duration: '80%',
-      }).fromTo( eventFrom, eventTo ).easing({ timing: 'ease-out', duration: 0.5, delay: 0 })
-
       eventFrom = { backgroundColor: '#FF5549', scale: 0.2 }
       eventTo = { backgroundColor: '#464EFF', scale: 1 }
       let target2 = document.querySelectorAll('.scroll-example-target-2')
       target2 && new SuperEvents(target2).scroll({
         indicator: '80%',
-        duration: '20%',
-      }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.1, cubicBezier: false } )
+        duration: '50%'
+      }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.05, cubicBezier: false } )
 
-
-
-      eventFrom = { backgroundColor: '#FFAAA4' }
-      eventTo = { backgroundColor: '#9BA0FF' }
+      eventFrom = { backgroundColor: '#FFAAA4', scale: 0.2 }
+      eventTo = { backgroundColor: '#9BA0FF', scale: 1 }
       let source3 = document.querySelector('.scroll-div-container')
       let target3 = source3.querySelectorAll('.scroll2-example-target')
 
       source3 && new SuperEvents({ source: source3, target: target3}).scroll({
         indicator: '80%',
-        duration: '60%',
-      }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.15, cubicBezier: false } )
+        duration: '20%'
+      }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.05, cubicBezier: false } )
 
     }
 

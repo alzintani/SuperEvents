@@ -1,21 +1,27 @@
 
-( function ( root, factory ) {
-  'use strict'
+(function(window, factory) {
+    'use strict'
 
-  if (typeof define === 'function' && define.amd) {
-      // AMD. Register as an anonymous module.
-      define(['b'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-      // Node. Does not work with strict CommonJS, but
-      // only CommonJS-like environments that support module.exports,
-      // like Node.
-      module.exports = factory(require('b'));
-  } else {
-      // Browser globals (root is window)
-      root.SuperEvents = factory(root.b);
-  }
+    // AMD. Register as an anonymous module.  Wrap in function so we have access
+    // to root via `this`.
+    if (typeof define === 'function' && define.amd) {
+        define([], function() {
+            window.SuperEvents = factory.call(window);
+            return window.SuperEvents;
+        });
+    }
 
-}( typeof self !== 'undefined' ? self : this, function ( b ) {
+    // Node. Does not work with strict CommonJS, but only CommonJS-like
+    // environments that support module.exports, like Node.
+    else if (typeof exports === 'object') {
+        module.exports = factory.call(window);
+    }
+
+    // Browser globals.
+    else {
+        window.SuperEvents = factory.call(window);
+    }
+})(typeof global === 'object' ? global : this, function() {
   'use strict'
 
   /**
@@ -24,7 +30,7 @@
    * @class      SuperEvents (name)
    */
 
-  return class SuperEvents {
+  class SuperEvents {
 
     /**
      * The current version of SuperEvents
@@ -59,7 +65,7 @@
     constructor( elements ) {
 
       // Exit if error in elements
-      if ( typeof  elements !== 'object' || elements.source === null || elements.target === null ) {
+      if ( typeof  elements !== 'object' || elements.length < 1 ) {
         throw new TypeError('You must use correct HTML elements.')
       }
 
@@ -136,4 +142,6 @@
 
   }
 
-}))
+  return SuperEvents
+
+})

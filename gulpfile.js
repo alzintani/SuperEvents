@@ -80,7 +80,7 @@ const apiGenerate = async () => {
     parse.file( `${path}/actions/easing.js`, callback)
   )
 
-  gulp.src( './src/pug/**.pug' )
+  return gulp.src( './src/pug/**.pug' )
     .pipe( pug({
       pretty: true,
       data: {        // Feed the templates
@@ -112,68 +112,72 @@ const runServer = () => {
 }
 
 gulp.task('compile-es6', function (cb) {
-  gulp.src('./src/SuperEvents/SuperEvents.js')
+
+  return gulp.src('./src/SuperEvents/SuperEvents.js')
     .pipe(include()).on('error', callNotify) // include files
     .pipe( babel() ).on('error', callNotify) // compile JS code to es5
     .pipe(header(banner, {pkg: pkg})).on('error', callNotify) // add file header
     .pipe(minify({ ext:{ min:'.min.js' } }))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./dist/')) &&
 
   apiGenerate()
 
-  return callNotify( null, 'SuperEvents Style is Compiled!!!!. {compile-es6}' )
 })
 
 gulp.task('js', function (cb) {
-  gulp.src('./src/js/javascript.js')
+  return gulp.src('./src/js/javascript.js')
     .pipe( babel() ).on('error', callNotify) // compile JS code to es5
     .pipe(minify({ ext:{ min:'.min.js' } }))
     .pipe(gulp.dest('./docs/assets/js/'))
-
-  return callNotify( null, 'SuperEvents Style is Compiled!!!!. {js}' )
 })
 
 gulp.task('sass', function () {
-  gulp.src('./src/scss/style.scss')
+  return gulp.src('./src/scss/style.scss')
     .pipe(sass({
       outputStyle: 'compressed'
     }).on('error', callNotify))
     .pipe(rename({
       suffix: '.min'
     })).pipe(gulp.dest('./docs/assets/css/'))
-
-  return callNotify( null, 'SuperEvents Style is Compiled!!!!. {sass}' )
 })
 
 gulp.task('pug', function () {
-  apiGenerate()
-  return callNotify( null, 'SuperEvents Style is Compiled!!!!. {pug}' )
+  return apiGenerate()
 })
 
 gulp.task('docs', async () => {
-  apiGenerate()
-  return callNotify( null, 'SuperEvents Style is Compiled!!!!. {pug}' )
+  return apiGenerate()
 })
 
 // default task
 gulp.task('watch', function() {
   gulp.watch(
-    ['./src/SuperEvents/**/*.js'], gulp.series('compile-es6')
+    ['./src/SuperEvents/**/*.js'], gulp.series('compile-es6', 'copy-to-docs', 'notify')
   )
 
   gulp.watch(
-    ['./src/js/javascript.js'], gulp.series('js')
+    ['./src/js/javascript.js'], gulp.series('js', 'notify')
   )
 
   gulp.watch(
-    ['./src/scss/**/*.scss'], gulp.series('sass')
+    ['./src/scss/**/*.scss'], gulp.series('sass', 'notify')
   )
 
   gulp.watch(
-    ['./src/pug/**/*.pug'], gulp.series('pug')
+    ['./src/pug/**/*.pug'], gulp.series('pug', 'notify')
   )
 
   runServer()
+})
+
+// default task
+gulp.task('copy-to-docs', function() {
+  return  gulp.src(['dist/**.js']).pipe(gulp.dest('docs/assets/js'))
+})
+
+// default task
+gulp.task('notify', function() {
+  return callNotify( null, 'SuperEvents is Compiled!!!!' )
 })
 
 gulp.task('build', gulp.series( 'pug', 'sass', 'js', 'compile-es6' ))

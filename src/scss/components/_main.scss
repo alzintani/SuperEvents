@@ -214,6 +214,7 @@ hr {
       }
 
       .scroll-div-container {
+        position: relative;
         height: 200px;
         padding: 20px;
         overflow-y: scroll;

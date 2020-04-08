@@ -76,21 +76,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           cubicBezier: false
         });
         eventFrom = {
-          backgroundColor: '#49FF8E'
-        };
-        eventTo = {
-          backgroundColor: '#FFE846'
-        };
-        target = document.querySelectorAll('.scroll-example-target');
-        target && new SuperEvents(target).scroll({
-          indicator: '80%',
-          duration: '80%'
-        }).fromTo(eventFrom, eventTo).easing({
-          timing: 'ease-out',
-          duration: 0.5,
-          delay: 0
-        });
-        eventFrom = {
           backgroundColor: '#FF5549',
           scale: 0.2
         };
@@ -101,18 +86,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         var target2 = document.querySelectorAll('.scroll-example-target-2');
         target2 && new SuperEvents(target2).scroll({
           indicator: '80%',
-          duration: '20%'
+          duration: '50%'
         }).fromTo(eventFrom, eventTo).easing({
           timing: 'ease-out',
           duration: 0.3,
-          delay: 0.1,
+          delay: 0.05,
           cubicBezier: false
         });
         eventFrom = {
-          backgroundColor: '#FFAAA4'
+          backgroundColor: '#FFAAA4',
+          scale: 0.2
         };
         eventTo = {
-          backgroundColor: '#9BA0FF'
+          backgroundColor: '#9BA0FF',
+          scale: 1
         };
         var source3 = document.querySelector('.scroll-div-container');
         var target3 = source3.querySelectorAll('.scroll2-example-target');
@@ -121,11 +108,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           target: target3
         }).scroll({
           indicator: '80%',
-          duration: '60%'
+          duration: '20%'
         }).fromTo(eventFrom, eventTo).easing({
           timing: 'ease-out',
           duration: 0.3,
-          delay: 0.15,
+          delay: 0.05,
           cubicBezier: false
         });
       }
