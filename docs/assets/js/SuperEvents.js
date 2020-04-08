@@ -1,11 +1,11 @@
 /*!
- * SuperEvents v0.1.0 (https://github.com/alzintani/SuperEvents#readme)
+ * SuperEvents v0.2.0 (https://github.com/alzintani/SuperEvents#readme)
  * Copyright 2018 SuperEvents
  * MIT License (URL)
  * 
  * 
  * @link https://github.com/alzintani/SuperEvents#readme
- * @version v0.1.0
+ * @version v0.2.0
  * @license MIT
  */
 
@@ -73,7 +73,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     function SuperEvents(elements) {
       _classCallCheck(this, SuperEvents);
 
-      _defineProperty(this, "version", '0.1.0');
+      _defineProperty(this, "version", '0.2.0');
 
       _defineProperty(this, "name", 'SuperEvents');
 
@@ -374,17 +374,30 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var _this2 = this;
 
         /**
-         * call function description
+         * call function
          * 
-         * @api        call       call( callback ): {object}
+         * @api        call       call( {function} callback, {boolean} instance ): {object}
          * 
-         * @params      {object}   [params={object}]   The parameters
-         * @return     {Object}   instance            This function will return SuperEvent instance
+         * @callback      {object}   [callback={function}]   callback function. you can pass three parameters to the callback function (progress from 0 to 1, event source, events target)
+         * @instance      {boolean}   [instance={boolean}]   set instance to true if you want to return current instance
+         * @return        {Object}   instance            This function will return SuperEvent instance
          * 
          * @example    example    event.call(p => document.querySelector('.class').style.top(`${p}px`))
          */
         this.actions.call = function (callback) {
-          callback();
+          var instance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+          _this2.runEvent(function () {
+            var progress = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            if (typeof callback === 'function') {
+              callback(progress, _this2.eventSource, _this2.eventTarget);
+            }
+          });
+
+          if (instance === true) {
+            return _this2;
+          }
         };
         /**
          * (From/To) function description
@@ -763,7 +776,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
           var duration = getIndicatorsPosition(isNaN(parseInt(params.duration)) ? 0 : params.duration);
           var start = el.offsetTop;
-          var end = el.offsetBottom;
+          var end = start + el.offsetHeight;
 
           var _end = isNaN(parseInt(params.duration)) ? end + scrollableHeight : start + duration;
 
@@ -894,14 +907,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             top: "".concat(_end, "px")
           }).text('End');
 
-          if (_this3.eventTarget instanceof Element || _this3.eventTarget[0] instanceof Element) {
-            parent = _typeof(_this3.eventTarget) !== 'object' ? _this3.eventTarget.parentNode : _this3.eventTarget[0].parentNode;
-            parent.appendChild(start);
-            parent.appendChild(end);
+          if (_this3.eventTarget instanceof Element) {
+            parent = _this3.eventTarget.parentNode;
           } else {
-            parent.appendChild(start);
-            parent.appendChild(end);
+            parent = _this3.eventTarget[0].parentNode;
           }
+
+          parent.appendChild(start);
+          parent.appendChild(end);
         };
 
         return this.actions;

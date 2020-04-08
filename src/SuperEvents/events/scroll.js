@@ -50,6 +50,7 @@ scroll( params = {} ) {
     } else if ( _progress < 0 ) {
       _progress = 0
     }
+
     call( _progress.toFixed(5) )
   }
 
@@ -98,7 +99,6 @@ scroll( params = {} ) {
     const end       = start + el.offsetHeight
     const _end      = isNaN( parseInt( params.duration ) ) ? end + scrollableHeight : start + duration
 
-    console.log( scrollableHeight, duration, end )
     this.params._sourceScrolling = {
       indicator:  indicator,
       runnigArea: _end - start,

@@ -1,6 +1,7 @@
-# SuperEvents V0.2.0
+# SuperEvents
 JavaScript library that handling any events in websites.
 
+[Examples](https://alzintani.github.io/SuperEvents/examples.html)
 
 -----
 

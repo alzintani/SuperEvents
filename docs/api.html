@@ -120,20 +120,29 @@
         <h3>Action Functions</h3>
         <ul>
           <li>
-            <h4>call( callback ): {object}</h4>
+            <h4>call( {function} callback, {boolean} instance ): {object}</h4>
             <ul>
               <li><strong>description:</strong>
-                <span>call function description</span>
+                <span>call function</span>
               </li>
               <li><strong>Parameters:</strong>
                 <ul>
-                  <li><strong>params:</strong>
+                  <li><strong>callback:</strong>
                     <ul>
                       <li>type: object</li>
-                      <li>name: params</li>
+                      <li>name: callback</li>
                       <li>optional: true</li>
-                      <li>default: {object}</li>
-                      <li>Description: The parameters</li>
+                      <li>default: {function}</li>
+                      <li>Description: callback function. you can pass three parameters to the callback function (progress from 0 to 1, event source, events target)</li>
+                    </ul>
+                  </li>
+                  <li><strong>instance:</strong>
+                    <ul>
+                      <li>type: boolean</li>
+                      <li>name: instance</li>
+                      <li>optional: true</li>
+                      <li>default: {boolean}</li>
+                      <li>Description: set instance to true if you want to return current instance</li>
                     </ul>
                   </li>
                   <li>

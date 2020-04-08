@@ -1,18 +1,29 @@
 
 actions() {
-  
+
   /**
-   * call function description
+   * call function
    * 
-   * @api        call       call( callback ): {object}
+   * @api        call       call( {function} callback, {boolean} instance ): {object}
    * 
-   * @params      {object}   [params={object}]   The parameters
-   * @return     {Object}   instance            This function will return SuperEvent instance
+   * @callback      {object}   [callback={function}]   callback function. you can pass three parameters to the callback function (progress from 0 to 1, event source, events target)
+   * @instance      {boolean}   [instance={boolean}]   set instance to true if you want to return current instance
+   * @return        {Object}   instance            This function will return SuperEvent instance
    * 
    * @example    example    event.call(p => document.querySelector('.class').style.top(`${p}px`))
    */
-  this.actions.call = ( callback ) => {
-    callback()
+  this.actions.call = ( callback, instance = false ) => {
+
+    this.runEvent( ( progress = 0 ) => {
+      if ( typeof callback === 'function' ) {
+        callback( progress, this.eventSource, this.eventTarget )
+      }
+    })
+
+    if ( instance === true ) {
+      return this
+    }
+
   }
 
   /**

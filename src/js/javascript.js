@@ -48,6 +48,7 @@
         duration: '50%'
       }).fromTo( eventFrom, eventTo ).easing( { timing: 'ease-out', duration: 0.3, delay: 0.05, cubicBezier: false } )
 
+
       eventFrom = { backgroundColor: '#FFAAA4', scale: 0.2 }
       eventTo = { backgroundColor: '#9BA0FF', scale: 1 }
       let source3 = document.querySelector('.scroll-div-container')
