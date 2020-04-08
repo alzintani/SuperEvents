@@ -1,4 +1,4 @@
-# SuperEvents V0.1
+# SuperEvents V0.2.0
 JavaScript library that handling any events in websites.
 
 
