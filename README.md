@@ -198,6 +198,8 @@ To display the documentation go to [http://localhost:3001](http://localhost:3001
 
 [Real Example](https://hayyabuild.zintathemes.com/)
 
+-----
+
 ## Copyright and license
 SuperEvents 2020 Hassan Matooq. Code released under the MIT license.
 
