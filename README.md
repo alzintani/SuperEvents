@@ -1,5 +1,5 @@
 # SuperEvents
-JavaScript library that handling any events in websites.
+JavaScript Scroll, Hover, Mouse move and Click effects library.
 
 [Examples](https://alzintani.github.io/SuperEvents/examples.html)
 
