@@ -1,7 +1,7 @@
 
 helper( object = null ) {
 
-  this.helper.object = object
+  this.helper.object = object;
 
   /**
    * { function_description }
@@ -9,18 +9,18 @@ helper( object = null ) {
    * @param    {<type>}  [params={}]  The parameters
    */
   this.helper.easing = ( params = {} ) => {
-    let duration = params.duration
-    let cubic = params.cubic
-    let delay = params.delay
+    let duration = params.duration;
+    let cubic = params.cubic;
+    let delay = params.delay;
 
     if ( object instanceof Element ) {
       object.style.transition = `all ${duration}s cubic-bezier(${cubic})`;
     } else if ( object[0] instanceof Element ) {
-      let tmpDelay = 0
+      let tmpDelay = 0;
       Array.prototype.forEach.call( object, el => {
-        let d = ` ${tmpDelay.toFixed(1)}s`
+        let d = ` ${tmpDelay.toFixed(1)}s`;
         if ( delay !== 0 ) {
-        tmpDelay = tmpDelay + delay
+        tmpDelay = tmpDelay + delay;
         }
         el.style.transition = `all ${duration}s${d} cubic-bezier(${cubic})`;
       })
@@ -36,10 +36,12 @@ helper( object = null ) {
    */
   this.helper.css = (style1 = {}, style2 = {}) => {
 
-    const object = this.helper.object
+    const object = this.helper.object;
 
     const setStyle = (element) => {
-      if ( ! element ) return
+      if ( ! element ) {
+        return;
+      }
       if (style1 && typeof style1 === 'object') {
         for (let key in style1) {
           element.style[key] = style1[key];
@@ -54,10 +56,10 @@ helper( object = null ) {
 
     if ( object[0] instanceof Element ) {
       Array.prototype.forEach.call( object, el => {
-        setStyle(el)
+        setStyle(el);
       })
     } else if ( object instanceof Element ) {
-      setStyle( object )
+      setStyle( object );
     }
     return this.helper;
   }
@@ -69,8 +71,12 @@ helper( object = null ) {
    * @return   {<type>}  { description_of_the_return_value }
    */
   this.helper.addClass = (c) => {
-    if ( typeof c !== 'string' ) return this.helper
-    let object = this.helper.object
+    if ( typeof c !== 'string' ) {
+      return this.helper;
+    }
+    
+    let object = this.helper.object;
+
     if ( 'function' === typeof object.forEach ) {
       Array.prototype.forEach.call( object, el => {
         el.classList && el.classList.add(c);
@@ -89,9 +95,10 @@ helper( object = null ) {
    */
   this.helper.removeClass = (c) => {
     if ( typeof c !== 'string' ) {
-      return this.helper
+      return this.helper;
     }
-    let object = this.helper.object
+
+    let object = this.helper.object;
     if ( 'function' === typeof object.forEach ) {
       Array.prototype.forEach.call( object, el => {
         el.classList && el.classList.remove(c);
@@ -123,48 +130,52 @@ helper( object = null ) {
    * @return   {<type>}  { description_of_the_return_value }
    */
   this.helper.colorCalculater = ( fromValue, toValue, _progress ) => {
-    fromValue = fromValue.trim()
-    toValue = toValue.trim()
-    _progress = _progress/100
+    fromValue = fromValue.trim();
+    toValue = toValue.trim();
+    _progress = _progress/100;
 
     if (
       (fromValue.indexOf('#') !== 0 || toValue.indexOf('#') !== 0) &&
       (fromValue.indexOf('rgb') !== 0 || toValue.indexOf('rgb') !== 0)
     ) {
-      return
+      return;
     }
 
-    if ( fromValue.indexOf('#') === 0 ) fromValue = this.helper.hexToRgb( fromValue )
-    if ( toValue.indexOf('#') === 0) toValue = this.helper.hexToRgb( toValue )
+    if ( fromValue.indexOf('#') === 0 ) {
+      fromValue = this.helper.hexToRgb( fromValue );
+    }
+    if ( toValue.indexOf('#') === 0) {
+      toValue = this.helper.hexToRgb( toValue );
+    }
 
     const getValue = ( fromRGB, toRGB ) => {
       if ( fromRGB && toRGB && fromRGB.indexOf('rgb') !== 0 || toRGB.indexOf('rgb') !== 0 ) {
-        return fromRGB
+        return fromRGB;
       }
-      const fromSubstr = fromRGB.indexOf('rgba') === 0 ? 5 : 4
-      const toSubstr = toRGB.indexOf('rgba') === 0 ? 5 : 4
-      let value = []
+      const fromSubstr = fromRGB.indexOf('rgba') === 0 ? 5 : 4;
+      const toSubstr = toRGB.indexOf('rgba') === 0 ? 5 : 4;
+      let value = [];
 
-      fromRGB = fromRGB.substr(fromSubstr).split(")")[0].split(',')
-      toRGB = toRGB.substr(toSubstr).split(")")[0].split(',')
+      fromRGB = fromRGB.substr(fromSubstr).split(")")[0].split(',');
+      toRGB = toRGB.substr(toSubstr).split(")")[0].split(',');
 
       if ( fromRGB.length === toRGB.length ) {
-        let i = 0
+        let i = 0;
         fromRGB.forEach( v => {
-        if ( i !== 3 ) {
-          value[i] = ((fromRGB[i] - (_progress * fromRGB[i])) + (_progress * toRGB[i])).toFixed(0)
-        } else {
-          value[i] = ((fromRGB[i] - (_progress * fromRGB[i])) + (_progress * toRGB[i])).toFixed(2)
-        }
-        i++
-        })
+          if ( i !== 3 ) {
+            value[i] = ((fromRGB[i] - (_progress * fromRGB[i])) + (_progress * toRGB[i])).toFixed(0);
+          } else {
+            value[i] = ((fromRGB[i] - (_progress * fromRGB[i])) + (_progress * toRGB[i])).toFixed(2);
+          }
+          i++;
+        });
       }
-      let type = (fromRGB.length) === 4 ? 'rgba' : 'rgb'
+      let type = (fromRGB.length) === 4 ? 'rgba' : 'rgb';
 
-      return `${type}(${value.join(',')})`
+      return `${type}(${value.join(',')})`;
     }
 
-    return getValue(fromValue, toValue)
+    return getValue(fromValue, toValue);
   }
 
 
@@ -203,9 +214,9 @@ helper( object = null ) {
     // Turn "rgb(r,g,b)" into [r,g,b]
     rgb = rgb.substr(4).split(")")[0].split(sep);
 
-    let r = (+rgb[0]).toString(16)
-    let g = (+rgb[1]).toString(16)
-    let b = (+rgb[2]).toString(16)
+    let r = (+rgb[0]).toString(16);
+    let g = (+rgb[1]).toString(16);
+    let b = (+rgb[2]).toString(16);
 
     if (r.length == 1) r = "0" + r;
     if (g.length == 1) g = "0" + g;
@@ -215,5 +226,5 @@ helper( object = null ) {
   }
 
 
-  return this.helper
+  return this.helper;
 }

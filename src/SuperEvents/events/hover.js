@@ -12,10 +12,10 @@
 hover( params = {} ) {
 
   this._sourceEvent = ( playCallBack ) => {
-    playCallBack(0)
-    this.eventSource.addEventListener( 'mouseover', () => playCallBack( 1 ) )
-    this.eventSource.addEventListener( 'mouseleave', () => playCallBack( 0 ) )
+    playCallBack(0);
+    this.eventSource.addEventListener( 'mouseover', () => playCallBack( 1 ) );
+    this.eventSource.addEventListener( 'mouseleave', () => playCallBack( 0 ) );
   }
 
-  return this.actions
+  return this.actions;
 }

@@ -10,8 +10,8 @@
  * 
  */
 scroll( params = {} ) {
-    
-  let listener = false
+
+  let listener = false;
 
   /*
    * { function_description }
@@ -19,9 +19,9 @@ scroll( params = {} ) {
    * @params      {Function}  playCallBack  The play call back
    */
   this._sourceEvent = playCallBack => {
-    document.addEventListener( params.listener && params.listener !== 'load' ? params.listener : 'DOMContentLoaded', () => runScrollEvent( playCallBack ) )
-    window.addEventListener('load', getScrollingPosition )
-    window.addEventListener( 'resize', getScrollingPosition )
+    document.addEventListener( params.listener && params.listener !== 'load' ? params.listener : 'DOMContentLoaded', () => runScrollEvent( playCallBack ) );
+    window.addEventListener('load', getScrollingPosition );
+    window.addEventListener( 'resize', getScrollingPosition );
   }
 
   /*
@@ -30,8 +30,8 @@ scroll( params = {} ) {
    * 
    */
   const runScrollEvent = call => {
-    getScrollingPosition()
-    scrollEvent( call )
+    getScrollingPosition();
+    scrollEvent( call );
   }
 
   /*
@@ -41,17 +41,17 @@ scroll( params = {} ) {
    * @param      {number}    top     The top
    */
   const eventScrollTop = ( call ) => {
-    const { indicator, runnigArea, start } = this.params._sourceScrolling
-    const top = ( typeof this.eventSource.scrollY === 'number' ? this.eventSource.scrollY : this.eventSource.scrollTop ) + indicator
-    let _progress = ( top - start ) /  runnigArea // get _progress when start element in viewport from 0 to 1
+    const { indicator, runnigArea, start } = this.params._sourceScrolling;
+    const top = ( typeof this.eventSource.scrollY === 'number' ? this.eventSource.scrollY : this.eventSource.scrollTop ) + indicator;
+    let _progress = ( top - start ) /  runnigArea; // get _progress when start element in viewport from 0 to 1
 
     if ( _progress > 1 ) {
-      _progress = 1
+      _progress = 1;
     } else if ( _progress < 0 ) {
-      _progress = 0
+      _progress = 0;
     }
 
-    call( _progress.toFixed(5) )
+    call( _progress.toFixed(5) );
   }
 
   /*
@@ -61,23 +61,23 @@ scroll( params = {} ) {
    */
   const scrollEvent = call => {
 
-    eventScrollTop( call )
+    eventScrollTop( call );
 
     const eventListener = () => {
-      const { indicator, start, end } = this.params._sourceScrolling
-      const top = ( typeof this.eventSource.scrollY === 'number' ? this.eventSource.scrollY : this.eventSource.scrollTop ) + indicator
+      const { indicator, start, end } = this.params._sourceScrolling;
+      const top = ( typeof this.eventSource.scrollY === 'number' ? this.eventSource.scrollY : this.eventSource.scrollTop ) + indicator;
 
       if ( top < start ) {
-        call(0)
+        call(0);
       } else if ( top > end ) {
-        call(1)
+        call(1);
       } else {
-        eventScrollTop( call )
+        eventScrollTop( call );
       }
-      listener = true
+      listener = true;
     }
 
-    ! listener && this.eventSource.addEventListener( 'scroll', eventListener, true )
+    ! listener && this.eventSource.addEventListener( 'scroll', eventListener, true );
   }
 
   /*
@@ -88,16 +88,16 @@ scroll( params = {} ) {
    */
   const getScrollingPosition = () => {
 
-    const scrollableHeight =  typeof this.eventSource.innerHeight === 'number' ? this.eventSource.innerHeight : this.eventSource.offsetHeight
-    const el        = this.eventTarget instanceof Element ? this.eventTarget : this.eventTarget[0]
-    const rect      = el.getBoundingClientRect()
+    const scrollableHeight =  typeof this.eventSource.innerHeight === 'number' ? this.eventSource.innerHeight : this.eventSource.offsetHeight;
+    const el        = this.eventTarget instanceof Element ? this.eventTarget : this.eventTarget[0];
+    const rect      = el.getBoundingClientRect();
 
-    const indicator = getIndicatorsPosition( params.indicator ?? 90 ) // get indicator value
-    const duration  = getIndicatorsPosition( isNaN( parseInt( params.duration ) ) ? 0 : params.duration )
+    const indicator = getIndicatorsPosition( params.indicator ?? 90 ); // get indicator value
+    const duration  = getIndicatorsPosition( isNaN( parseInt( params.duration ) ) ? 0 : params.duration );
 
-    const start     = el.offsetTop
-    const end       = start + el.offsetHeight
-    const _end      = isNaN( parseInt( params.duration ) ) ? end + scrollableHeight : start + duration
+    const start     = el.offsetTop;
+    const end       = start + el.offsetHeight;
+    const _end      = isNaN( parseInt( params.duration ) ) ? end + scrollableHeight : start + duration;
 
     this.params._sourceScrolling = {
       indicator:  indicator,
@@ -106,7 +106,7 @@ scroll( params = {} ) {
       end:        _end
     }
 
-    params.debug === true && scrollDebugging()
+    params.debug === true && scrollDebugging();
   }
 
   /*
@@ -116,13 +116,13 @@ scroll( params = {} ) {
    * @return   {<type>}  The indicators position.
    */
   const getIndicatorsPosition = num => {
-    let height =  typeof this.eventSource.innerHeight === 'number' ? this.eventSource.innerHeight : this.eventSource.offsetHeight
-    num = Math.abs( parseInt(num) )
+    let height =  typeof this.eventSource.innerHeight === 'number' ? this.eventSource.innerHeight : this.eventSource.offsetHeight;
+    num = Math.abs( parseInt(num) );
 
-    num = num <= 100 ? num : 0
+    num = num <= 100 ? num : 0;
     return Math.round(
       (num / 100) * height
-    )
+    );
   }
 
   /*
@@ -131,14 +131,14 @@ scroll( params = {} ) {
    * 
    */
   const scrollDebugging = () => {
-    let debug = document.querySelectorAll('.suprescrolling-debug')
+    let debug = document.querySelectorAll('.suprescrolling-debug');
     if ( debug ) {
       Array.prototype.forEach.call( debug, el => {
-        el.parentNode.removeChild( el )
-      })
+        el.parentNode.removeChild( el );
+      });
     }
-    scrollingPositionDebug()
-    targetPositionDebug()
+    scrollingPositionDebug();
+    targetPositionDebug();
   }
 
   /*
@@ -150,9 +150,9 @@ scroll( params = {} ) {
    */
   const scrollingPositionDebug = () => {
 
-    const { indicator, duration } = this.params._sourceScrolling
-    const _indicator = document.createElement('HR')
-    let parent = document.body
+    const { indicator, duration } = this.params._sourceScrolling;
+    const _indicator = document.createElement('HR');
+    let parent = document.body;
 
     const style = {
       textAlign: 'left',
@@ -171,20 +171,20 @@ scroll( params = {} ) {
 
     this.helper(_indicator).addClass('suprescrolling-debug').css(style, {
       top: (indicator - 20) + 'px',
-    }).text('Indicator')
+    }).text('Indicator');
 
     if ( typeof this.eventSource.parentNode !== 'undefined' ) {
-      parent = this.eventSource.parentNode
+      parent = this.eventSource.parentNode;
       this.helper(parent).css({
         position: 'relative',
-      })
+      });
     } else {
       this.helper(_indicator).css({
         position: 'fixed',
-      })
+      });
     }
 
-    parent.appendChild(_indicator)
+    parent.appendChild(_indicator);
 
   }
 
@@ -210,27 +210,27 @@ scroll( params = {} ) {
       fontSize: '0.8rem',
     }
     
-    let parent = document.body
+    let parent = document.body;
 
-    const start   = document.createElement('HR')
-    const end     = document.createElement('HR')
+    const start   = document.createElement('HR');
+    const end     = document.createElement('HR');
 
-    const _start  = this.params._sourceScrolling.start
-    const _end    = this.params._sourceScrolling.end
+    const _start  = this.params._sourceScrolling.start;
+    const _end    = this.params._sourceScrolling.end;
     
-    this.helper(start).addClass('suprescrolling-debug').css(style, { top: `${_start}px` }).text( 'Start' )
-    this.helper(end).addClass('suprescrolling-debug').css(style, { top: `${_end}px` }).text( 'End' )
+    this.helper(start).addClass('suprescrolling-debug').css(style, { top: `${_start}px` }).text( 'Start' );
+    this.helper(end).addClass('suprescrolling-debug').css(style, { top: `${_end}px` }).text( 'End' );
 
     if ( this.eventTarget instanceof Element ) {
-      parent = this.eventTarget.parentNode
+      parent = this.eventTarget.parentNode;
     } else {
-      parent = this.eventTarget[0].parentNode
+      parent = this.eventTarget[0].parentNode;
     }
-    parent.appendChild(start)
-    parent.appendChild(end)
+    parent.appendChild(start);
+    parent.appendChild(end);
 
   }
 
-  return this.actions
+  return this.actions;
 
 }

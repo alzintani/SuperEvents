@@ -1,6 +1,6 @@
 
 (function(window, factory) {
-    'use strict'
+    'use strict';
 
     // AMD. Register as an anonymous module.  Wrap in function so we have access
     // to root via `this`.
@@ -22,7 +22,7 @@
         window.SuperEvents = factory.call(window);
     }
 })(typeof global === 'object' ? global : this, function() {
-  'use strict'
+  'use strict';
 
   /**
    * This class describes SuperEvents.
@@ -35,27 +35,27 @@
     /**
      * The current version of SuperEvents
      */
-    version = '0.2.0'
+    version = '0.2.0';
 
     /**
      * The current version of SuperEvents
      */
-    name = 'SuperEvents'
+    name = 'SuperEvents';
 
     /**
      * Description of SuperEvents
      */
-    description = 'SuperEvents is a JavaScript library that handling any events in websites. Support all events action like:- Scrolling, Clicking, Hovering, Mouse Moving, Tapping.'
+    description = 'SuperEvents is a JavaScript library that handling any events in websites. Support all events action like:- Scrolling, Clicking, Hovering, Mouse Moving, Tapping.';
 
     /**
      * the license of SuperEvents
      */
-    license = 'MIT'
+    license = 'MIT';
 
     /**
      * Parameters that will pass to event functions {object}
      */
-    params = {}
+    params = {};
 
     /**
      * Constructs a new instance.
@@ -66,11 +66,11 @@
 
       // Exit if error in elements
       if ( typeof  elements !== 'object' || elements.length < 1 ) {
-        throw new TypeError('You must use correct HTML elements.')
+        throw new TypeError('You must use correct HTML elements.');
       }
 
       // start initialize SuperEvents
-      this.initialize( elements )
+      this.initialize( elements );
     }
 
     /**
@@ -84,15 +84,15 @@
       try {
 
         // source elements
-        this.eventSource = typeof elements.source !== 'undefined'  ? elements.source : window
+        this.eventSource = typeof elements.source !== 'undefined'  ? elements.source : window;
 
         // target elements
-        this.eventTarget = elements instanceof Element || elements instanceof HTMLDocument || elements[0] instanceof Element ? elements : elements.target
+        this.eventTarget = elements instanceof Element || elements instanceof HTMLDocument || elements[0] instanceof Element ? elements : elements.target;
 
-        this.actions()
+        this.actions();
 
       } catch ( e ) {
-        console.log( 'ERROR01:', e )
+        console.log( 'ERROR01:', e );
       }
     }
 
@@ -102,7 +102,7 @@
      * @return     {boolean}  { description_of_the_return_value }
      */
     runEvent( playCallBack ) {
-      this._sourceEvent( playCallBack )
+      this._sourceEvent( playCallBack );
     }
 
     /**
@@ -142,6 +142,6 @@
 
   }
 
-  return SuperEvents
+  return SuperEvents;
 
-})
+});

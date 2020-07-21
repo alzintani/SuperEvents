@@ -1,11 +1,11 @@
 /*!
- * SuperEvents v0.2.0 (https://github.com/alzintani/SuperEvents#readme)
+ * SuperEvents v0.2.1 (https://github.com/alzintani/SuperEvents#readme)
  * Copyright 2018 SuperEvents
  * MIT License (URL)
  * 
  * 
  * @link https://github.com/alzintani/SuperEvents#readme
- * @version v0.2.0
+ * @version v0.2.1
  * @license MIT
  */
 
@@ -176,7 +176,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           var object = _this.helper.object;
 
           var setStyle = function setStyle(element) {
-            if (!element) return;
+            if (!element) {
+              return;
+            }
 
             if (style1 && _typeof(style1) === 'object') {
               for (var key in style1) {
@@ -210,7 +212,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 
         this.helper.addClass = function (c) {
-          if (typeof c !== 'string') return _this.helper;
+          if (typeof c !== 'string') {
+            return _this.helper;
+          }
+
           var object = _this.helper.object;
 
           if ('function' === typeof object.forEach) {
@@ -282,8 +287,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             return;
           }
 
-          if (fromValue.indexOf('#') === 0) fromValue = _this.helper.hexToRgb(fromValue);
-          if (toValue.indexOf('#') === 0) toValue = _this.helper.hexToRgb(toValue);
+          if (fromValue.indexOf('#') === 0) {
+            fromValue = _this.helper.hexToRgb(fromValue);
+          }
+
+          if (toValue.indexOf('#') === 0) {
+            toValue = _this.helper.hexToRgb(toValue);
+          }
 
           var getValue = function getValue(fromRGB, toRGB) {
             if (fromRGB && toRGB && fromRGB.indexOf('rgb') !== 0 || toRGB.indexOf('rgb') !== 0) {
@@ -438,7 +448,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               css[i] = {};
               Array.prototype.forEach.call(Object.keys(scrollEventFrom), function (key) {
                 var fromValue = scrollEventFrom[key];
-                if (_typeof(scrollEventTo[key]) === undefined) return;
+
+                if (_typeof(scrollEventTo[key]) === undefined) {
+                  return;
+                }
 
                 if (_ALL.indexOf(key) > -1 && scrollEventFrom.hasOwnProperty(key) && scrollEventTo.hasOwnProperty(key)) {
                   toValue = scrollEventTo[key]; // to value

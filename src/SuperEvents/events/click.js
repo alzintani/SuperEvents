@@ -12,21 +12,21 @@
 click( params = {} ) {
 
   this._sourceEvent = ( playCallBack ) => {
-    const toggle = typeof params.toggle !== 'undefined' ? params.toggle : true
+    const toggle = typeof params.toggle !== 'undefined' ? params.toggle : true;
 
-    this._click_progress = 1
-    playCallBack( 0 )
+    this._click_progress = 1;
+    playCallBack( 0 );
 
     const click = () => {
-      playCallBack(  this._click_progress )
+      playCallBack(  this._click_progress );
 
       if ( toggle ) {
-        this._click_progress = + !this._click_progress
+        this._click_progress = + !this._click_progress;
       }
     }
 
-    this.eventSource.addEventListener( 'click', click)
+    this.eventSource.addEventListener( 'click', click);
   }
 
-  return this.actions
+  return this.actions;
 }
