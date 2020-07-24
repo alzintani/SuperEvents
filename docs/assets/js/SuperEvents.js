@@ -1,11 +1,11 @@
 /*!
- * SuperEvents v0.2.1 (https://github.com/alzintani/SuperEvents#readme)
+ * SuperEvents v0.2.2 (https://github.com/alzintani/SuperEvents#readme)
  * Copyright 2018 SuperEvents
  * MIT License (URL)
  * 
  * 
  * @link https://github.com/alzintani/SuperEvents#readme
- * @version v0.2.1
+ * @version v0.2.2
  * @license MIT
  */
 
@@ -73,7 +73,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     function SuperEvents(elements) {
       _classCallCheck(this, SuperEvents);
 
-      _defineProperty(this, "version", '0.2.0');
+      _defineProperty(this, "version", '0.2.2');
 
       _defineProperty(this, "name", 'SuperEvents');
 
@@ -135,7 +135,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
         this.helper.object = object;
         /**
-         * { function_description }
+         * easing function
          *
          * @param    {<type>}  [params={}]  The parameters
          */
@@ -162,7 +162,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }
         };
         /**
-         * { function_description }
+         * css function
          *
          * @param    {<type>}  [style1={}]  The style 1
          * @param    {<type>}  [style2={}]  The style 2

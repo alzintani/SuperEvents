@@ -4,7 +4,7 @@ helper( object = null ) {
   this.helper.object = object;
 
   /**
-   * { function_description }
+   * easing function
    *
    * @param    {<type>}  [params={}]  The parameters
    */
@@ -28,7 +28,7 @@ helper( object = null ) {
   }
 
   /**
-   * { function_description }
+   * css function
    *
    * @param    {<type>}  [style1={}]  The style 1
    * @param    {<type>}  [style2={}]  The style 2

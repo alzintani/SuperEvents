@@ -35,7 +35,7 @@
     /**
      * The current version of SuperEvents
      */
-    version = '0.2.0';
+    version = '0.2.2';
 
     /**
      * The current version of SuperEvents
